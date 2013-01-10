@@ -17,8 +17,13 @@ public class RobotMap {
     // public static final int rangefinderPort = 1;
     // public static final int rangefinderModule = 1;
 
+    
+    //joystick/controller ports
+    public static final int JOYSTICK_MADCATZ = 1;
+    public static final int JOYSTICK_LOGITECH = 2;
+    
     // -- Madcatz -- \\
-    // Madcatz controller mapping 
+    // Madcatz controller mapping uses getRawButton()
     public static final int MADCATZ_BUTTON_A = 1;
     public static final int MADCATZ_BUTTON_B = 2;
     public static final int MADCATZ_BUTTON_X = 3;
@@ -26,10 +31,12 @@ public class RobotMap {
     public static final int MADCATZ_BUTTON_LB = 5;
     public static final int MADCATZ_BUTTON_RB = 6;
 
-    // Madcatz axes mapping
-    public static final int MADCATZ_AXES_LEFT_JOYSTICK_X = 1;
-    public static final int MADCATZ_AXES_LEFT_JOYSTICK_Y = 2;
-    public static final int MADCATZ_AXES_RIGHT_JOYSTICK_X = 4;
-    public static final int MADCATZ_AXES_RIGHT_JOYSTICK_Y = 5;
+    // Madcatz axes mapping uses getRawAxis()
+    public static final int MADCATZ_AXIS_LEFT_JOYSTICK_X = 1;
+    public static final int MADCATZ_AXIS_LEFT_JOYSTICK_Y = 2;
+    public static final int MADCATZ_AXIS_RIGHT_JOYSTICK_X = 4;
+    public static final int MADCATZ_AXIS_RIGHT_JOYSTICK_Y = 5;
+    
+    //see Joystick documentation for mappings for getAxis()
 }
 
