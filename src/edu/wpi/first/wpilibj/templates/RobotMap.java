@@ -16,4 +16,20 @@ public class RobotMap {
     // number and the module. For example you with a rangefinder:
     // public static final int rangefinderPort = 1;
     // public static final int rangefinderModule = 1;
+
+    // -- Madcatz -- \\
+    // Madcatz controller mapping 
+    public static final int MADCATZ_BUTTON_A = 1;
+    public static final int MADCATZ_BUTTON_B = 2;
+    public static final int MADCATZ_BUTTON_X = 3;
+    public static final int MADCATZ_BUTTON_Y = 4;
+    public static final int MADCATZ_BUTTON_LB = 5;
+    public static final int MADCATZ_BUTTON_RB = 6;
+
+    // Madcatz axes mapping
+    public static final int MADCATZ_AXES_LEFT_JOYSTICK_X = 1;
+    public static final int MADCATZ_AXES_LEFT_JOYSTICK_Y = 2;
+    public static final int MADCATZ_AXES_RIGHT_JOYSTICK_X = 4;
+    public static final int MADCATZ_AXES_RIGHT_JOYSTICK_Y = 5;
 }
+
