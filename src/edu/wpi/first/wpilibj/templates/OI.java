@@ -10,8 +10,8 @@ import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-    Joystick madcatz = new Joystick(RobotMap.JOYSTICK_MADCATZ);
-    Joystick logitech = new Joystick(RobotMap.JOYSTICK_LOGITECH);
+    public static Joystick madcatz = new Joystick(RobotMap.JOYSTICK_MADCATZ);
+    public static Joystick logitech = new Joystick(RobotMap.JOYSTICK_LOGITECH);
     //// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.
     // You create one by telling it which joystick it's on and which button

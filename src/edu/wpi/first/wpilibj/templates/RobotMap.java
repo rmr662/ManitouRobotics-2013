@@ -38,5 +38,8 @@ public class RobotMap {
     public static final int MADCATZ_AXIS_RIGHT_JOYSTICK_Y = 5;
     
     //see Joystick documentation for mappings for getAxis()
+    
+    public static final int PWM_LEFT_DRIVE_TRAIN_MOTOR = 1;
+    public static final int PWM_RIGHT_DRIVE_TRAIN_MOTOR = 2;
 }
 
