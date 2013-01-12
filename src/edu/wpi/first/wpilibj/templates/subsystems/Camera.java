@@ -17,10 +17,14 @@ public class Camera extends Subsystem {
     AxisCamera camera;
 
     public Camera() {
-        camera = AxisCamera.getInstance("10.29.45.11");
-        camera.writeResolution(AxisCamera.ResolutionT.k320x240);
-        camera.writeMaxFPS(18);
-        System.out.print("foo");
+        try {
+            camera = AxisCamera.getInstance("10.29.45.11");
+            camera.writeResolution(AxisCamera.ResolutionT.k320x240);
+            camera.writeMaxFPS(18);
+            System.out.print("foo");
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
     public void initDefaultCommand() {
 
