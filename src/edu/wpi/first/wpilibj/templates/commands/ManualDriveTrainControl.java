@@ -44,6 +44,4 @@ public class ManualDriveTrainControl extends CommandBase {
     protected void interrupted() {
     }
 
-    private void require(Chassis chassis) {
-    }
 }
