@@ -36,7 +36,7 @@ public class Chassis extends Subsystem {
         drive.tankDrive(leftValue, rightValue);
         SmartDashboard.putNumber(("Left Drive Drain Control"), leftValue);
         SmartDashboard.putNumber(("Right Drive Drain Control"), rightValue);
-        if (Team2945Robot.DEBUG && Team2945Robot.DEBUG_CHASSIS) {
+        if (Team2945Robot.DEBUG_ALL && Team2945Robot.DEBUG_CHASSIS) {
             SmartDashboard.putNumber(("madcatz raw axis 1"), OI.madcatz.getRawAxis(RobotMap.MADCATZ_AXIS_LEFT_JOYSTICK_X));
             SmartDashboard.putNumber(("madcatz raw axis 2"), OI.madcatz.getRawAxis(RobotMap.MADCATZ_AXIS_LEFT_JOYSTICK_Y));
             SmartDashboard.putNumber(("madcatz raw axis 3"), OI.madcatz.getRawAxis(3));
