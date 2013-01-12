@@ -26,6 +26,10 @@ public class Team2945Robot extends IterativeRobot {
 
     Command autonomousCommand;
 
+    // Debugging flaging
+    public static final boolean DEBUG_ALL = false;
+    public static final boolean DEBUG_CHASSIS = false;
+
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
