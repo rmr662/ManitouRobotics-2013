@@ -26,10 +26,46 @@ public class Team2945Robot extends IterativeRobot {
 
     Command autonomousCommand;
 
-    // Debugging flaging
-    public static final boolean DEBUG_ALL = false;
-    public static final boolean DEBUG_CHASSIS = false;
+    // Not final because I need to enable it for the test() method
+    private static boolean DEBUG_ALL = false;
+    private static final boolean DEBUG_CHASSIS = false;
+    private static final boolean DEBUG_CAMERA = false;
 
+    /** 
+     * Debugging flagging:
+     * Called before an optional output to either the output console or the SmartDashboard. Can be personalized for subsystems see 
+     * 
+     * If the code is in debugging mode(always in the test method), then all subsystems will have debug output.
+     * 
+     * @param type specifies if the debugging check is looking for only a certain part of the code. Any arguments should be a lower case version of the subsystem: "chassis"
+     * @return true if debugging is enabled for this chunk of code. Return false if not.
+     */
+    public static boolean isDebugging(String type) {
+	if(DEBUG_ALL) {
+		return true;
+	}
+	else if( type.equals("chassis") && DEBUG_CHASSIS) {
+		return true;
+	}
+	else if( type.equals("camera") && DEBUG_CAMERA ) {
+		return true;
+	}
+	return false;
+
+    }
+
+    /**
+     * Supplying no arguments to the isDebugging() method simply checks if debugging is enabled for all subsystems
+     * 
+     * @return true if the DEBUG_ALL flag is enabled. false if the DEBUG_ALL flag is disabled
+     */
+    public static boolean isDebugging() {
+	if(DEBUG_ALL) {
+		return true;
+	}
+
+	return false;
+    }
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
