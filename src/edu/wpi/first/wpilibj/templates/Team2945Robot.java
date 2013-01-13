@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 import edu.wpi.first.wpilibj.templates.commands.ExampleCommand;
 
@@ -41,16 +42,30 @@ public class Team2945Robot extends IterativeRobot {
      * @return true if debugging is enabled for this chunk of code. Return false if not.
      */
     public static boolean isDebugging(String type) {
+	
+	
+    // Allows me to putdata to the SmartDashboard without displaying something if debugging is false
+	boolean debug = false;
+
 	if(DEBUG_ALL) {
-		return true;
+		SmartDashboard.putString("Debugging:", "ALL");
+		debug = true;
 	}
-	else if( type.equals("chassis") && DEBUG_CHASSIS) {
-		return true;
+
+	if( type.equals("chassis") && DEBUG_CHASSIS) {
+		debug = true;	
 	}
 	else if( type.equals("camera") && DEBUG_CAMERA ) {
-		return true;
+		debug = true;
 	}
-	return false;
+	else {
+		debug = false;
+	}
+	if(debug) {
+		SmartDashboard.putString("Debugging:", type);
+	}
+
+	return debug;
 
     }
 
@@ -61,6 +76,7 @@ public class Team2945Robot extends IterativeRobot {
      */
     public static boolean isDebugging() {
 	if(DEBUG_ALL) {
+		SmartDashboard.putString("Debugging:", "ALL");
 		return true;
 	}
 
