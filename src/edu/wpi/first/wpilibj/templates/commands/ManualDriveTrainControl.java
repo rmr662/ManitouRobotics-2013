@@ -44,7 +44,7 @@ public class ManualDriveTrainControl extends CommandBase {
             SmartDashboard.putNumber(("madcatz raw axis 3"), OI.madcatz.getRawAxis(3));
             SmartDashboard.putNumber(("madcatz raw axis 4"), OI.madcatz.getRawAxis(RobotMap.MADCATZ_AXIS_RIGHT_JOYSTICK_X));
             SmartDashboard.putNumber(("madcatz raw axis 5"), OI.madcatz.getRawAxis(RobotMap.MADCATZ_AXIS_RIGHT_JOYSTICK_Y));
-	}
+        }
     }
 
     // Make this return true when this Command no longer needs to run execute()

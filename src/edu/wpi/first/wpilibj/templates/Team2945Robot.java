@@ -28,7 +28,7 @@ public class Team2945Robot extends IterativeRobot {
     Command autonomousCommand;
 
     // Not final because I need to enable it for the test() method
-    private static boolean DEBUG_ALL = true;
+    private static boolean DEBUG_ALL = false;
     private static final boolean DEBUG_CHASSIS = false;
     private static final boolean DEBUG_CAMERA = false;
 
