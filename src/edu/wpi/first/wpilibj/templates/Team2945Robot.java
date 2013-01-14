@@ -28,7 +28,7 @@ public class Team2945Robot extends IterativeRobot {
     Command autonomousCommand;
 
     // Not final because I need to enable it for the test() method
-    private static boolean DEBUG_ALL = false;
+    private static boolean DEBUG_ALL = true;
     private static final boolean DEBUG_CHASSIS = false;
     private static final boolean DEBUG_CAMERA = false;
 
@@ -42,31 +42,29 @@ public class Team2945Robot extends IterativeRobot {
      * @return true if debugging is enabled for this chunk of code. Return false if not.
      */
     public static boolean isDebugging(String type) {
-	
-	
-    // Allows me to putdata to the SmartDashboard without displaying something if debugging is false
-	boolean debug = false;
+        
+        // Allows me to putdata to the SmartDashboard without displaying something if debugging is false
+        boolean debug = false;
 
-	if(DEBUG_ALL) {
-		SmartDashboard.putString("Debugging:", "ALL");
-		debug = true;
-	}
+        if(DEBUG_ALL) {
+            SmartDashboard.putString("Debugging:", "ALL");
+            debug = true;
+        }
+        else if( type.equals("chassis") && DEBUG_CHASSIS) {
+            debug = true;	
+        }
+        else if( type.equals("camera") && DEBUG_CAMERA ) {
+            debug = true;
+        }
+        else {
+            debug = false;
+        }
 
-	if( type.equals("chassis") && DEBUG_CHASSIS) {
-		debug = true;	
-	}
-	else if( type.equals("camera") && DEBUG_CAMERA ) {
-		debug = true;
-	}
-	else {
-		debug = false;
-	}
-	if(debug) {
-		SmartDashboard.putString("Debugging:", type);
-	}
+        if(debug) {
+            SmartDashboard.putString("Debugging:", type);
+        }
 
-	return debug;
-
+        return debug;
     }
 
     /**
