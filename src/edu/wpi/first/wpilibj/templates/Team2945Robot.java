@@ -94,6 +94,7 @@ public class Team2945Robot extends IterativeRobot {
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
+        getWatchdog().setEnabled(true);
         autonomousCommand.start();
     }
 
@@ -102,6 +103,7 @@ public class Team2945Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        getWatchdog().feed();
     }
 
     public void teleopInit() {
@@ -110,19 +112,25 @@ public class Team2945Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         autonomousCommand.cancel();
+        getWatchdog().setEnabled(true);
     }
 
     /**
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
+        getWatchdog().feed();
         Scheduler.getInstance().run();
     }
     
     /**
      * This function is called periodically during test mode
      */
+    public void testIint() {
+        getWatchdog().setEnabled(false);
+    }
     public void testPeriodic() {
+        // There's no init for test..?
         LiveWindow.run();
     }
 }
