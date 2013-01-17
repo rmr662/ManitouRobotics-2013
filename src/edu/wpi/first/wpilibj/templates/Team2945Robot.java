@@ -120,6 +120,7 @@ public class Team2945Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         getWatchdog().feed();
+        
         Scheduler.getInstance().run();
     }
     

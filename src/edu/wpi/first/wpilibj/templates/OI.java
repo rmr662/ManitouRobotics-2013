@@ -4,6 +4,11 @@ package edu.wpi.first.wpilibj.templates;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.templates.commands.AcquisitionForward;
+import edu.wpi.first.wpilibj.templates.commands.AcquisitionReverse;
+import edu.wpi.first.wpilibj.templates.commands.AcquisitionStop;
+import edu.wpi.first.wpilibj.templates.commands.toggleControls;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -12,6 +17,56 @@ import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 public class OI {
     public static Joystick madcatz = new Joystick(RobotMap.JOYSTICK_MADCATZ);
     public static Joystick logitech = new Joystick(RobotMap.JOYSTICK_LOGITECH);
+    
+    
+    static int mode;
+    static Button buttonMode = new JoystickButton(logitech, RobotMap.LOGITECH_BUTTON_MODE_SWITCH);
+    static Button acquisitionForward;
+    static Button acquisitionReverse;
+    static Button acquisitionStop;
+    
+    public static void OI () {
+        buttonMode.whenPressed(new toggleControls());
+        setShootingControls(); // we never climb first
+    }
+    public static void toggleMode() {
+        if(mode == RobotMap.MODE_SHOOTING) {
+            setShootingControls();
+        }
+        else if(mode == RobotMap.MODE_CLIMBING) {
+            setClimbingControls();
+        }
+    }
+    
+    private static void setShootingControls() {
+        disableClimbingButtons();
+        mode = RobotMap.MODE_SHOOTING;
+        acquisitionStop = new JoystickButton(logitech, RobotMap.LOGITECH_BUTTON_ACQUISITION_STOP);
+        acquisitionReverse = new JoystickButton(logitech, RobotMap.LOGITECH_BUTTON_ACQUISITION_REVERSE);
+        acquisitionForward = new JoystickButton(logitech, RobotMap.LOGITECH_BUTTON_ACQUISITION_FORWARD);
+        
+        acquisitionStop.whenPressed(new AcquisitionStop());
+        acquisitionForward.whenPressed(new AcquisitionForward());
+        acquisitionReverse.whenPressed(new AcquisitionReverse());
+        
+    }
+    
+    private static void setClimbingControls() {
+        disableShootingButtons();
+        mode = RobotMap.MODE_CLIMBING;
+    }
+    
+    private static void disableClimbingButtons() {
+        
+    }
+    
+    private static void disableShootingButtons() {
+        acquisitionStop = null;
+        acquisitionReverse = null;
+        acquisitionForward = null;
+    }
+    
+
     //// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.
     // You create one by telling it which joystick it's on and which button
