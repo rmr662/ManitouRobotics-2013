@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.templates.commands.AcquisitionForward;
+import edu.wpi.first.wpilibj.templates.commands.AcquisitionReverse;
+import edu.wpi.first.wpilibj.templates.commands.AcquisitionStop;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 import edu.wpi.first.wpilibj.templates.commands.ExampleCommand;
 
@@ -113,12 +116,14 @@ public class Team2945Robot extends IterativeRobot {
         // this line or comment it out.
         autonomousCommand.cancel();
         getWatchdog().setEnabled(true);
+        OI.setShootingControls();
     }
 
     /**
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
+        getWatchdog().setExpiration(10000);
         getWatchdog().feed();
         
         Scheduler.getInstance().run();
@@ -132,6 +137,11 @@ public class Team2945Robot extends IterativeRobot {
     }
     public void testPeriodic() {
         // There's no init for test..?
+        getWatchdog().feed();
         LiveWindow.run();
+        SmartDashboard.putData(new AcquisitionForward());
+        SmartDashboard.putData(new AcquisitionReverse());
+        SmartDashboard.putData(new AcquisitionStop());
+
     }
 }

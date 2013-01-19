@@ -59,8 +59,8 @@ public class RobotMap {
     //logitech button uses
     public static final int LOGITECH_BUTTON_ACQUISITION_STOP = 2;
     public static final int LOGITECH_BUTTON_ACQUISITION_REVERSE = 3;
+    public static final int LOGITECH_BUTTON_ACQUISITION_FORWARD = 1; // trigger
     public static final int LOGITECH_BUTTON_MODE_SWITCH = 11;
-    public static final int LOGITECH_BUTTON_ACQUISITION_FORWARD = Joystick.ButtonType.kTrigger.value;
     
     //logitech axes uses  
     public static final int LOGITECH_AXIS_SHOOTER_VERTICAL = Joystick.AxisType.kY.value;

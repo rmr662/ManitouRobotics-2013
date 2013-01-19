@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.commands.AcquisitionForward;
 import edu.wpi.first.wpilibj.templates.commands.AcquisitionReverse;
 import edu.wpi.first.wpilibj.templates.commands.AcquisitionStop;
@@ -25,20 +26,26 @@ public class OI {
     static Button acquisitionReverse;
     static Button acquisitionStop;
     
-    public static void OI () {
+    public OI () {
         buttonMode.whenPressed(new toggleControls());
-        setShootingControls(); // we never climb first
     }
     public static void toggleMode() {
+        // switch current modes
         if(mode == RobotMap.MODE_SHOOTING) {
-            setShootingControls();
+            setClimbingControls();
+            SmartDashboard.putString("Logitech Mode", "Climbing");
         }
         else if(mode == RobotMap.MODE_CLIMBING) {
-            setClimbingControls();
+            setShootingControls();
+            SmartDashboard.putString("Logitech Mode", "Shooting");
         }
+        else {
+            SmartDashboard.putString("Logitech Mode", "WTF");
+        }
+
     }
     
-    private static void setShootingControls() {
+    public static void setShootingControls() {
         disableClimbingButtons();
         mode = RobotMap.MODE_SHOOTING;
         acquisitionStop = new JoystickButton(logitech, RobotMap.LOGITECH_BUTTON_ACQUISITION_STOP);
@@ -61,9 +68,9 @@ public class OI {
     }
     
     private static void disableShootingButtons() {
-        acquisitionStop = null;
-        acquisitionReverse = null;
-        acquisitionForward = null;
+        acquisitionStop.whenPressed(null);
+        acquisitionForward.whenPressed(null);
+        acquisitionReverse.whenPressed(null);
     }
     
 

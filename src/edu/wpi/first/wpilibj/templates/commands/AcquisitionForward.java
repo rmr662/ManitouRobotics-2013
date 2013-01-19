@@ -19,11 +19,11 @@ public class AcquisitionForward extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        acquisition.setAcquisitionMotors(Relay.Value.kForward);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        acquisition.setAcquisitionMotors(Relay.Value.kForward);
     }
 
     // Make this return true when this Command no longer needs to run execute()
