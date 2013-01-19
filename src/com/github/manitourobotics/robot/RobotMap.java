@@ -1,5 +1,7 @@
 package com.github.manitourobotics.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -41,5 +43,19 @@ public class RobotMap {
     
     public static final int PWM_LEFT_DRIVE_TRAIN_MOTOR = 1;
     public static final int PWM_RIGHT_DRIVE_TRAIN_MOTOR = 2;
+    
+    //madcatz axes uses
+    public static final int MADCATZ_AXIS_MANUAL_DRIVE_TRAIN_LEFT = MADCATZ_AXIS_LEFT_JOYSTICK_Y;
+    public static final int MADCATZ_AXIS_MANUAL_DRIVE_TRAIN_RIGHT = MADCATZ_AXIS_RIGHT_JOYSTICK_Y;
+    
+    //logitech button uses
+    public static final int LOGITECH_BUTTON_ACQUISITION_STOP = 2;
+    public static final int LOGITECH_BUTTON_ACQUISITION_BACK = 3;
+    public static final int LOGITECH_BUTTON_MODE_SWITCH = 11;
+    public static final int LOGITECH_BUTTON_ACQUISITION_FORWARD = Joystick.ButtonType.kTrigger.value;
+    
+    //logitech axes uses  
+    public static final int LOGITECH_AXIS_SHOOTER_VERTICAL = Joystick.AxisType.kY.value;
+    public static final int LOGITECH_AXIS_SHOOTER_HORIZONTAL = Joystick.AxisType.kTwist.value;
 }
 
