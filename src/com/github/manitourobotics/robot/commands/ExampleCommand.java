@@ -1,5 +1,5 @@
 
-package edu.wpi.first.wpilibj.templates.commands;
+package com.github.manitourobotics.robot.commands;
 
 /**
  *

@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package edu.wpi.first.wpilibj.templates;
+package com.github.manitourobotics.robot;
 
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -13,8 +13,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.templates.commands.CommandBase;
-import edu.wpi.first.wpilibj.templates.commands.ExampleCommand;
+import com.github.manitourobotics.robot.commands.CommandBase;
+import com.github.manitourobotics.robot.commands.ExampleCommand;
 
 /**
  * The VM is configured to automatically run this class, and to call the

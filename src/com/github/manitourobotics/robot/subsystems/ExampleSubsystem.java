@@ -1,5 +1,5 @@
 
-package edu.wpi.first.wpilibj.templates.subsystems;
+package com.github.manitourobotics.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 

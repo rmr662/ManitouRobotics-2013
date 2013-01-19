@@ -2,16 +2,16 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.wpi.first.wpilibj.templates.subsystems;
+package com.github.manitourobotics.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.templates.OI;
-import edu.wpi.first.wpilibj.templates.RobotMap;
-import edu.wpi.first.wpilibj.templates.Team2945Robot;
-import edu.wpi.first.wpilibj.templates.commands.ManualDriveTrainControl;
+import com.github.manitourobotics.robot.OI;
+import com.github.manitourobotics.robot.RobotMap;
+import com.github.manitourobotics.robot.Team2945Robot;
+import com.github.manitourobotics.robot.commands.ManualDriveTrainControl;
 
 /**
  *

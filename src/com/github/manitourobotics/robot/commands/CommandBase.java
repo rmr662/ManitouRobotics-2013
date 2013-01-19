@@ -1,11 +1,11 @@
-package edu.wpi.first.wpilibj.templates.commands;
+package com.github.manitourobotics.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.templates.OI;
-import edu.wpi.first.wpilibj.templates.subsystems.Camera;
-import edu.wpi.first.wpilibj.templates.subsystems.Chassis;
-import edu.wpi.first.wpilibj.templates.subsystems.ExampleSubsystem;
+import com.github.manitourobotics.robot.OI;
+import com.github.manitourobotics.robot.subsystems.Camera;
+import com.github.manitourobotics.robot.subsystems.Chassis;
+import com.github.manitourobotics.robot.subsystems.ExampleSubsystem;
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
