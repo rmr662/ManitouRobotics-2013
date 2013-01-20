@@ -136,13 +136,13 @@ public class Team2945Robot extends IterativeRobot {
      */
     public void testIint() {
         getWatchdog().setEnabled(false);
-    }
-    public void testPeriodic() {
-        getWatchdog().feed();
-        LiveWindow.run();
         SmartDashboard.putData(new AcquisitionForward());
         SmartDashboard.putData(new AcquisitionReverse());
         SmartDashboard.putData(new AcquisitionStop());
+    }
+    public void testPeriodic() {
+        getWatchdog().feed(); // running feed anyway.. 
+        LiveWindow.run();
 
     }
 }
