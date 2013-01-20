@@ -68,7 +68,7 @@ public class RobotMap {
     public static final int LOGITECH_BUTTON_MODE_SWITCH = 11;
     
     //logitech axes uses  
-    public static final int LOGITECH_AXIS_SHOOTER_VERTICAL = Joystick.AxisType.kY.value;
-    public static final int LOGITECH_AXIS_SHOOTER_HORIZONTAL = Joystick.AxisType.kTwist.value;
+    public static final int LOGITECH_AXIS_SHOOTING_VERTICAL = Joystick.AxisType.kY.value;
+    public static final int LOGITECH_AXIS_SHOOTING_HORIZONTAL = Joystick.AxisType.kTwist.value;
 }
 
