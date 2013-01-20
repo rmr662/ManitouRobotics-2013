@@ -136,7 +136,6 @@ public class Team2945Robot extends IterativeRobot {
         getWatchdog().setEnabled(false);
     }
     public void testPeriodic() {
-        // There's no init for test..?
         getWatchdog().feed();
         LiveWindow.run();
         SmartDashboard.putData(new AcquisitionForward());
