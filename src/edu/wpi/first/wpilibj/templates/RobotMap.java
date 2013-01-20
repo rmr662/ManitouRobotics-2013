@@ -51,6 +51,8 @@ public class RobotMap {
     // relay ports
     public static final int RELAY_ACQUISITION_MOTOR_TOP = 1;
     // reserve ports 2 and 3 for acquisition
+    public static final int RELAY_SHOOTER_MOTOR_FRONT = 4;
+    // reserve port 5 and 6 for shooter motors
     
     //madcatz axes uses
     public static final int MADCATZ_AXIS_MANUAL_DRIVE_TRAIN_LEFT = MADCATZ_AXIS_LEFT_JOYSTICK_Y;
@@ -60,6 +62,9 @@ public class RobotMap {
     public static final int LOGITECH_BUTTON_ACQUISITION_STOP = 2;
     public static final int LOGITECH_BUTTON_ACQUISITION_REVERSE = 3;
     public static final int LOGITECH_BUTTON_ACQUISITION_FORWARD = 1; // trigger
+    public static final int LOGITECH_BUTTON_SHOOTER_ON = 6; 
+    public static final int LOGITECH_BUTTON_SHOOTER_OFF = 4; 
+
     public static final int LOGITECH_BUTTON_MODE_SWITCH = 11;
     
     //logitech axes uses  

@@ -24,6 +24,9 @@ public class OI {
     static Button buttonMode = new JoystickButton(logitech, RobotMap.LOGITECH_BUTTON_MODE_SWITCH);
     
     public OI () {
+            // Refresh mode
+            String mode="None"
+            SmartDashboard.putString("Logitech Mode", mode)
     }
 
     //Reset/set controls every teleop init
@@ -39,14 +42,15 @@ public class OI {
         else if(mode == RobotMap.MODE_CLIMBING) {
             executeClimbingControls();
         }
-
     }
 
-    public private void executeClimbingControls() {
-        // nothing yet
+
+    private static void executeClimbingControls() {
     }
 
-    public private void executeShootingControls() {
+    // includes both acquisiton and shooting
+    private static void executeShootingControls() {
+
         if(logitech.getRawButton(LOGITECH_BUTTON_ACQUISITION_FORWARD) {
             new AcquisitionForward();
         }
@@ -58,22 +62,22 @@ public class OI {
         }
     }
 
-
-    public private void executeAcquisitionControls() {
-    }
-
     public static void displayControls() {
 
-        // since mode is an integer, I need to convert that integer to something meaningful to output to the SmartDashboard
+        // since mode is an integer, I need to convert that integer to somemode;
         String mode;
-        if(mode == RobotMap.MODE_SHOOTING) {
+
+        if(this.mode == RobotMap.MODE_SHOOTING) {
             mode="Shooting"
         }
-        else if(mode == RobotMap.MODE_CLIMBING) {
+        else if(this.mode == RobotMap.MODE_CLIMBING) {
             mode="Climbing"
+
+            new AcquisitionStop();
+            new ShooterOff();
         }
         else {
-            mode="None" // this should never happen
+            mode="None"
         }
 
         SmartDashboard.putString("Logitech Mode", mode)
@@ -83,16 +87,10 @@ public class OI {
         // switch current modes
         if(mode == RobotMap.MODE_SHOOTING) {
             mode=RobotMap.MODE_CLIMBING;
-            SmartDashboard.putString("Logitech Mode", "Climbing");
         }
         else if(mode == RobotMap.MODE_CLIMBING) {
             mode=RobotMap.MODE_SHOOTING;
-            SmartDashboard.putString("Logitech Mode", "Shooting");
         }
-        else {
-            SmartDashboard.putString("Logitech Mode", "None");
-        }
-
     }
 
     //// CREATING BUTTONS
