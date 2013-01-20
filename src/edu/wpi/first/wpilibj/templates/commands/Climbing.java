@@ -1,12 +1,14 @@
 package edu.wpi.first.wpilibj.templates.commands;
 
-import edu.wpi.first.wpilibj.Relay;
+/**
+ *
+ * @author bradmiller
+ */
+public class ExampleCommand extends CommandBase {
 
-public class ShooterOn extends CommandBase {
-    
-    public ShooterOn() {
+    public ExampleCommand() {
         // Use requires() here to declare subsystem dependencies
-        requires(shooter);
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
@@ -15,12 +17,11 @@ public class ShooterOn extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        shooter.setShooterMotors(Relay.Value.kForward);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true

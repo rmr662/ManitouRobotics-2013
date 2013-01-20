@@ -52,7 +52,7 @@ public class RobotMap {
     public static final int RELAY_ACQUISITION_MOTOR_TOP = 1;
     // reserve ports 2 and 3 for acquisition
     public static final int RELAY_SHOOTER_MOTOR_FRONT = 4;
-    // reserve port 5 and 6 for shooter motors
+    // reserve port 5 and 6 for shooting motors
     
     //madcatz axes uses
     public static final int MADCATZ_AXIS_MANUAL_DRIVE_TRAIN_LEFT = MADCATZ_AXIS_LEFT_JOYSTICK_Y;

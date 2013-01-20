@@ -18,25 +18,25 @@ import edu.wpi.first.wpilibj.templates.Team2945Robot;
  *
  * @author Justin
  */
-public class Shooter extends Subsystem {
+public class Shooting extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
     private Relay frontMotor = new Relay(RELAY_SHOOTER_MOTOR_FRONT)
 
-    public Shooter() {
-        // The shooters should never go backwards
+    public Shooting() {
+        // The shootings should never go backwards
         Relay.setDirection(Relay.Direction.kForward)    
     }
 
-    public void setShooterMotors(Relay.Value value) {
+    public void setShootingMotors(Relay.Value value) {
         frontMotor.set(value)
     }
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-        setDefaultCommand(new ShooterOn())
-        /* setDefaultCommand(new ShooterOff()) */
+        setDefaultCommand(new ShootingOn())
+        /* setDefaultCommand(new ShootingOff()) */
     }
 }

@@ -74,7 +74,7 @@ public class OI {
             mode="Climbing"
 
             new AcquisitionStop();
-            new ShooterOff();
+            new ShootingOff();
         }
         else {
             mode="None"
