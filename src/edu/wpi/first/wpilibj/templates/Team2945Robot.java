@@ -116,15 +116,17 @@ public class Team2945Robot extends IterativeRobot {
         // this line or comment it out.
         autonomousCommand.cancel();
         getWatchdog().setEnabled(true);
-        OI.setShootingControls();
+        OI.setupControls();
     }
 
     /**
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        getWatchdog().setExpiration(10000);
         getWatchdog().feed();
+
+        OI.updateSmartDashboard();
+        OI.executeControls();
         
         Scheduler.getInstance().run();
     }

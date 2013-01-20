@@ -22,57 +22,78 @@ public class OI {
     
     static int mode;
     static Button buttonMode = new JoystickButton(logitech, RobotMap.LOGITECH_BUTTON_MODE_SWITCH);
-    static Button acquisitionForward;
-    static Button acquisitionReverse;
-    static Button acquisitionStop;
     
     public OI () {
+    }
+
+    //Reset/set controls every teleop init
+    public static void setupControls() {
+        mode = RobotMap.MODE_SHOOTING; // Shooting always starts
         buttonMode.whenPressed(new toggleControls());
     }
-    public static void toggleMode() {
-        // switch current modes
+
+    public static void executeControls() {
         if(mode == RobotMap.MODE_SHOOTING) {
-            setClimbingControls();
-            SmartDashboard.putString("Logitech Mode", "Climbing");
+            executeShootingControls();
         }
         else if(mode == RobotMap.MODE_CLIMBING) {
-            setShootingControls();
-            SmartDashboard.putString("Logitech Mode", "Shooting");
-        }
-        else {
-            SmartDashboard.putString("Logitech Mode", "WTF");
+            executeClimbingControls();
         }
 
     }
-    
-    public static void setShootingControls() {
-        disableClimbingButtons();
-        mode = RobotMap.MODE_SHOOTING;
-        acquisitionStop = new JoystickButton(logitech, RobotMap.LOGITECH_BUTTON_ACQUISITION_STOP);
-        acquisitionReverse = new JoystickButton(logitech, RobotMap.LOGITECH_BUTTON_ACQUISITION_REVERSE);
-        acquisitionForward = new JoystickButton(logitech, RobotMap.LOGITECH_BUTTON_ACQUISITION_FORWARD);
-        
-        acquisitionStop.whenPressed(new AcquisitionStop());
-        acquisitionForward.whenPressed(new AcquisitionForward());
-        acquisitionReverse.whenPressed(new AcquisitionReverse());
-        
+
+    public private void executeClimbingControls() {
+        // nothing yet
     }
-    
-    private static void setClimbingControls() {
-        disableShootingButtons();
-        mode = RobotMap.MODE_CLIMBING;
+
+    public private void executeShootingControls() {
+        if(logitech.getRawButton(LOGITECH_BUTTON_ACQUISITION_FORWARD) {
+            new AcquisitionForward();
+        }
+        if(logitech.getRawButton(LOGITECH_BUTTON_ACQUISITION_REVERSE) {
+            new AcquisitionReverse();
+        }
+        if(logitech.getRawButton(LOGITECH_BUTTON_ACQUISITION_STOP) {
+            new AcquisitionStop();
+        }
     }
-    
-    private static void disableClimbingButtons() {
-        
+
+
+    public private void executeAcquisitionControls() {
     }
-    
-    private static void disableShootingButtons() {
-        acquisitionStop.whenPressed(null);
-        acquisitionForward.whenPressed(null);
-        acquisitionReverse.whenPressed(null);
+
+    public static void displayControls() {
+
+        // since mode is an integer, I need to convert that integer to something meaningful to output to the SmartDashboard
+        String mode;
+        if(mode == RobotMap.MODE_SHOOTING) {
+            mode="Shooting"
+        }
+        else if(mode == RobotMap.MODE_CLIMBING) {
+            mode="Climbing"
+        }
+        else {
+            mode="None" // this should never happen
+        }
+
+        SmartDashboard.putString("Logitech Mode", mode)
     }
-    
+
+    public static void toggleMode() {
+        // switch current modes
+        if(mode == RobotMap.MODE_SHOOTING) {
+            mode=RobotMap.MODE_CLIMBING;
+            SmartDashboard.putString("Logitech Mode", "Climbing");
+        }
+        else if(mode == RobotMap.MODE_CLIMBING) {
+            mode=RobotMap.MODE_SHOOTING;
+            SmartDashboard.putString("Logitech Mode", "Shooting");
+        }
+        else {
+            SmartDashboard.putString("Logitech Mode", "None");
+        }
+
+    }
 
     //// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.
