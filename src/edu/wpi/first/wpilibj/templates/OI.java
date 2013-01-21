@@ -24,6 +24,9 @@ public class OI {
     static Button buttonMode = new JoystickButton(logitech, RobotMap.LOGITECH_BUTTON_MODE_SWITCH);
     
     public OI () {
+            // Refresh mode
+            String modeName="None";
+            SmartDashboard.putString("Logitech Mode", modeName);
     }
 
     //Reset/set controls every teleop init
@@ -39,7 +42,6 @@ public class OI {
         else if(mode == RobotMap.MODE_CLIMBING) {
             executeClimbingControls();
         }
-
     }
 
     private static void executeClimbingControls() {
@@ -57,7 +59,6 @@ public class OI {
             new AcquisitionStop();
         }
     }
-
 
     private static void executeAcquisitionControls() {
     }
@@ -83,16 +84,10 @@ public class OI {
         // switch current modes
         if(mode == RobotMap.MODE_SHOOTING) {
             mode=RobotMap.MODE_CLIMBING;
-            SmartDashboard.putString("Logitech Mode", "Climbing");
         }
         else if(mode == RobotMap.MODE_CLIMBING) {
             mode=RobotMap.MODE_SHOOTING;
-            SmartDashboard.putString("Logitech Mode", "Shooting");
         }
-        else {
-            SmartDashboard.putString("Logitech Mode", "None");
-        }
-
     }
 
     //// CREATING BUTTONS
