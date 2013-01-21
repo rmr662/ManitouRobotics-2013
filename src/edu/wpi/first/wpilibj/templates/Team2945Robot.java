@@ -125,7 +125,7 @@ public class Team2945Robot extends IterativeRobot {
     public void teleopPeriodic() {
         getWatchdog().feed();
 
-        OI.updateSmartDashboard();
+        OI.displayControls();
         OI.executeControls();
         
         Scheduler.getInstance().run();

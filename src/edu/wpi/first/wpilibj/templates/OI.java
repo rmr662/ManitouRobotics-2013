@@ -42,41 +42,41 @@ public class OI {
 
     }
 
-    public private void executeClimbingControls() {
+    private static void executeClimbingControls() {
         // nothing yet
     }
 
-    public private void executeShootingControls() {
-        if(logitech.getRawButton(LOGITECH_BUTTON_ACQUISITION_FORWARD) {
+    private static void executeShootingControls() {
+        if(logitech.getRawButton(RobotMap.LOGITECH_BUTTON_ACQUISITION_FORWARD)) {
             new AcquisitionForward();
         }
-        if(logitech.getRawButton(LOGITECH_BUTTON_ACQUISITION_REVERSE) {
+        if(logitech.getRawButton(RobotMap.LOGITECH_BUTTON_ACQUISITION_REVERSE)) {
             new AcquisitionReverse();
         }
-        if(logitech.getRawButton(LOGITECH_BUTTON_ACQUISITION_STOP) {
+        if(logitech.getRawButton(RobotMap.LOGITECH_BUTTON_ACQUISITION_STOP)) {
             new AcquisitionStop();
         }
     }
 
 
-    public private void executeAcquisitionControls() {
+    private static void executeAcquisitionControls() {
     }
 
     public static void displayControls() {
 
         // since mode is an integer, I need to convert that integer to something meaningful to output to the SmartDashboard
-        String mode;
+        String modeName;
         if(mode == RobotMap.MODE_SHOOTING) {
-            mode="Shooting"
+            modeName="Shooting";
         }
         else if(mode == RobotMap.MODE_CLIMBING) {
-            mode="Climbing"
+            modeName="Climbing";
         }
         else {
-            mode="None" // this should never happen
+            modeName="None"; // this should never happen
         }
 
-        SmartDashboard.putString("Logitech Mode", mode)
+        SmartDashboard.putString("Logitech Mode", modeName);
     }
 
     public static void toggleMode() {
