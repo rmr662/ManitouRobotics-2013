@@ -6,6 +6,8 @@ import com.github.manitourobotics.robot.OI;
 import com.github.manitourobotics.robot.subsystems.Camera;
 import com.github.manitourobotics.robot.subsystems.Chassis;
 import com.github.manitourobotics.robot.subsystems.ExampleSubsystem;
+import com.github.manitourobotics.robot.subsystems.Shooting;
+import com.github.manitourobotics.robot.subsystems.Acquisition;
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -20,6 +22,8 @@ public abstract class CommandBase extends Command {
     public static ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
     public static Camera camera = new Camera();
     public static Chassis chassis = new Chassis();
+    public static Acquisition acquisition = new Acquisition();
+    public static Shooting shooting = new Shooting();
 
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely
@@ -33,6 +37,7 @@ public abstract class CommandBase extends Command {
         SmartDashboard.putData(exampleSubsystem);
         SmartDashboard.putData(camera);
         SmartDashboard.putData(chassis);
+        SmartDashboard.putData(acquisition);
     }
 
     public CommandBase(String name) {
