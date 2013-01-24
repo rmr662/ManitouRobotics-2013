@@ -1,6 +1,6 @@
 MIDlet-Name: 2013-robot
 MIDlet-Version: 1.0.0
 MIDlet-Vendor: FIRST
-MIDlet-1: Team2945Robot, , edu.wpi.first.wpilibj.templates.Team2945Robot
+MIDlet-1: Team2945Robot, , com.github.manitourobotics.robot.Team2945Robot
 MicroEdition-Profile: IMP-1.0
 MicroEdition-Configuration: CLDC-1.1
