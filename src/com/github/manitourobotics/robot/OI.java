@@ -25,7 +25,7 @@ public class OI {
     
     public OI () {
             // Refresh mode
-            String modeName="None";
+            String modeName="None1";
             SmartDashboard.putString("Logitech Mode", modeName);
     }
 
@@ -74,7 +74,7 @@ public class OI {
             modeName="Climbing";
         }
         else {
-            modeName="None"; // this should never happen
+            modeName="None2"; // this should never happen
         }
 
         SmartDashboard.putString("Logitech Mode", modeName);
