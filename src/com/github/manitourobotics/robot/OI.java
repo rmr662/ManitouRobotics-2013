@@ -50,13 +50,13 @@ public class OI {
 
     private static void executeShootingControls() {
         if(logitech.getRawButton(RobotMap.LOGITECH_BUTTON_ACQUISITION_FORWARD)) {
-            new AcquisitionForward();
+            new AcquisitionForward().start();
         }
         if(logitech.getRawButton(RobotMap.LOGITECH_BUTTON_ACQUISITION_REVERSE)) {
-            new AcquisitionReverse();
+            new AcquisitionReverse().start();
         }
         if(logitech.getRawButton(RobotMap.LOGITECH_BUTTON_ACQUISITION_STOP)) {
-            new AcquisitionStop();
+            new AcquisitionStop().start();
         }
     }
 
