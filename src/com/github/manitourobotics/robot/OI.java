@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.github.manitourobotics.robot.commands.AcquisitionForward;
 import com.github.manitourobotics.robot.commands.AcquisitionReverse;
 import com.github.manitourobotics.robot.commands.AcquisitionStop;
-import com.github.manitourobotics.robot.commands.toggleControls;
+import com.github.manitourobotics.robot.commands.ToggleControls;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -32,7 +32,7 @@ public class OI {
     //Reset/set controls every teleop init
     public static void setupControls() {
         mode = RobotMap.MODE_SHOOTING; // Shooting always starts
-        buttonMode.whenPressed(new toggleControls());
+        buttonMode.whenPressed(new ToggleControls());
     }
 
     public static void executeControls() {

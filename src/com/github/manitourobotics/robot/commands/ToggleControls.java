@@ -8,7 +8,7 @@ import com.github.manitourobotics.robot.OI;
 
 /**
  *
- * @author Justin
+ * @author robotics
  */
 public class ToggleControls extends CommandBase {
     
