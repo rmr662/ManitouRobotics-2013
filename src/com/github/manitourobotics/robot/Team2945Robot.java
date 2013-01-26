@@ -87,6 +87,7 @@ public class Team2945Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
+        autonomousCommand = new AcquisitionForward();
 
         // Initialize all subsystems
         CommandBase.init();
