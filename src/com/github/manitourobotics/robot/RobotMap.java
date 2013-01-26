@@ -19,9 +19,9 @@ public class RobotMap {
     // public static final int rangefinderPort = 1;
     // public static final int rangefinderModule = 1;
 
-    // two modes
     public static final int MODE_SHOOTING = 1;
     public static final int MODE_CLIMBING = 2;
+    public static final int MODE_AUTONOMOUS = 3;
     
     //joystick/controller ports
     public static final int JOYSTICK_MADCATZ = 1;

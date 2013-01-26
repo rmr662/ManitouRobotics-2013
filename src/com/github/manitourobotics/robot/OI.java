@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.github.manitourobotics.robot.commands.AcquisitionForward;
 import com.github.manitourobotics.robot.commands.AcquisitionReverse;
 import com.github.manitourobotics.robot.commands.AcquisitionStop;
+import com.github.manitourobotics.robot.commands.ManualDriveTrainControl;
+import com.github.manitourobotics.robot.commands.ShootingOn;
 import com.github.manitourobotics.robot.commands.ToggleControls;
 
 /**
@@ -23,6 +25,9 @@ public class OI {
     static int mode;
     static Button buttonMode = new JoystickButton(logitech, RobotMap.LOGITECH_BUTTON_MODE_SWITCH);
     
+    public int getMode() {
+        return mode;
+    }
     public OI () {
             // Refresh mode
             String modeName="None1";
@@ -66,14 +71,16 @@ public class OI {
     public static void displayControls() {
 
         // since mode is an integer, I need to convert that integer to something meaningful to output to the SmartDashboard
-        String modeName;
+        String modeName = "";
         if(mode == RobotMap.MODE_SHOOTING) {
             modeName="Shooting";
         }
         else if(mode == RobotMap.MODE_CLIMBING) {
             modeName="Climbing";
         }
-        else {
+        else if (mode == RobotMap.MODE_AUTONOMOUS){
+            modeName="Autonomous";
+        } else {
             modeName="None2"; // this should never happen
         }
 
@@ -88,6 +95,15 @@ public class OI {
         else if(mode == RobotMap.MODE_CLIMBING) {
             mode=RobotMap.MODE_SHOOTING;
         }
+    }
+
+    public static void setupClimbingControls() {
+    }
+
+    public static void setupShootingControls() {
+        new ManualDriveTrainControl().start();
+        new AcquisitionForward().start();
+        new ShootingOn().start();
     }
 
     //// CREATING BUTTONS

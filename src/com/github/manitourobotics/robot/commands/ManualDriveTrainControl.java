@@ -50,7 +50,13 @@ public class ManualDriveTrainControl extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        if(oi.getMode() == RobotMap.MODE_SHOOTING) {
+            return false;
+        } else
+        {
+            chassis.getRobotDrive().tankDrive(0, 0); // stop the motors
+            return true;
+        }
     }
 
     // Called once after isFinished returns true
