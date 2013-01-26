@@ -3,7 +3,6 @@ package com.github.manitourobotics.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.github.manitourobotics.robot.OI;
-import com.github.manitourobotics.robot.subsystems.Camera;
 import com.github.manitourobotics.robot.subsystems.Chassis;
 import com.github.manitourobotics.robot.subsystems.Shooting;
 import com.github.manitourobotics.robot.subsystems.Acquisition;
@@ -18,7 +17,6 @@ public abstract class CommandBase extends Command {
 
     public static OI oi;
     // Create a single static instance of all of your subsystems
-    public static Camera camera = new Camera();
     public static Chassis chassis = new Chassis();
     public static Acquisition acquisition = new Acquisition();
     public static Shooting shooting = new Shooting();
@@ -32,7 +30,6 @@ public abstract class CommandBase extends Command {
         oi = new OI();
 
         // Show what command your subsystem is running on the SmartDashboard
-        SmartDashboard.putData(camera);
         SmartDashboard.putData(chassis);
         SmartDashboard.putData(acquisition);
         SmartDashboard.putData(shooting);
