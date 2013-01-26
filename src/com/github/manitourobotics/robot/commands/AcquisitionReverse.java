@@ -5,6 +5,7 @@
 package com.github.manitourobotics.robot.commands;
 
 import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -20,6 +21,7 @@ public class AcquisitionReverse extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
         acquisition.setAcquisitionMotors(Relay.Value.kReverse);
+        SmartDashboard.putString("Acquisition", "Reverse");
     }
 
     // Called repeatedly when this Command is scheduled to run

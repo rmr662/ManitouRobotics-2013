@@ -25,7 +25,7 @@ public class OI {
     static int mode;
     static Button buttonMode = new JoystickButton(logitech, RobotMap.LOGITECH_BUTTON_MODE_SWITCH);
     
-    public int getMode() {
+    public static int getMode() {
         return mode;
     }
     public OI () {
@@ -38,6 +38,7 @@ public class OI {
     public static void setupControls() {
         mode = RobotMap.MODE_SHOOTING; // Shooting always starts
         buttonMode.whenPressed(new ToggleControls());
+        setupShootingControls();
     }
 
     public static void executeControls() {
@@ -91,16 +92,21 @@ public class OI {
         // switch current modes
         if(mode == RobotMap.MODE_SHOOTING) {
             mode=RobotMap.MODE_CLIMBING;
+            setupClimbingControls();
         }
         else if(mode == RobotMap.MODE_CLIMBING) {
             mode=RobotMap.MODE_SHOOTING;
+            setupShootingControls();
         }
     }
 
-    public static void setupClimbingControls() {
+    private static void setupClimbingControls() {
+        // Stop any shooting stuff
+        new AcquisitionStop().start();
+        // the manualdrivetrain controls checks modes
     }
 
-    public static void setupShootingControls() {
+    private static void setupShootingControls() {
         new ManualDriveTrainControl().start();
         new AcquisitionForward().start();
         new ShootingOn().start();

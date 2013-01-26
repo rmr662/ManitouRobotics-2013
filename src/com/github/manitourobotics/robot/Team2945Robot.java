@@ -17,6 +17,7 @@ import com.github.manitourobotics.robot.commands.CommandBase;
 import com.github.manitourobotics.robot.commands.AcquisitionForward;
 import com.github.manitourobotics.robot.commands.AcquisitionReverse;
 import com.github.manitourobotics.robot.commands.AcquisitionStop;
+import com.github.manitourobotics.robot.commands.ShootingOn;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -87,7 +88,7 @@ public class Team2945Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-        autonomousCommand = new AcquisitionForward();
+        //autonomousCommand = new AcquisitionForward(); //dummy
 
         // Initialize all subsystems
         CommandBase.init();
@@ -96,7 +97,13 @@ public class Team2945Robot extends IterativeRobot {
     public void autonomousInit() {
         // schedule the autonomous command (example)
         getWatchdog().setEnabled(true);
-        autonomousCommand.start();
+        startAutonomousSubsystems();
+        //autonomousCommand.start();
+    }
+
+    public void startAutonomousSubsystems() {
+        new AcquisitionForward().start();
+        new ShootingOn().start();
     }
 
     /**
@@ -112,7 +119,7 @@ public class Team2945Robot extends IterativeRobot {
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
-        autonomousCommand.cancel();
+        //autonomousCommand.cancel();
         getWatchdog().setEnabled(true);
         OI.setupControls();
     }
@@ -134,9 +141,6 @@ public class Team2945Robot extends IterativeRobot {
      */
     public void testIint() {
         getWatchdog().setEnabled(false);
-        SmartDashboard.putData(new AcquisitionForward());
-        SmartDashboard.putData(new AcquisitionReverse());
-        SmartDashboard.putData(new AcquisitionStop());
     }
     public void testPeriodic() {
         getWatchdog().feed(); // running feed anyway.. 
