@@ -4,6 +4,8 @@
  */
 package com.github.manitourobotics.robot.subsystems;
 
+import com.github.manitourobotics.robot.RobotMap;
+import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
 /**
@@ -15,6 +17,9 @@ public class TilterOrArms extends PIDSubsystem {
     private static final double Kp = 0.0;
     private static final double Ki = 0.0;
     private static final double Kd = 0.0;
+
+    Jaguar tilterJaguar = new Jaguar(RobotMap.PWM_TILTER_OR_CENTER_ARM_MOTOR);
+    static final int SPEED = 1;
 
     // Initialize your subsystem here
     public TilterOrArms() {
