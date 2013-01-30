@@ -18,6 +18,7 @@ import com.github.manitourobotics.robot.commands.AcquisitionForward;
 import com.github.manitourobotics.robot.commands.AcquisitionReverse;
 import com.github.manitourobotics.robot.commands.AcquisitionStop;
 import com.github.manitourobotics.robot.commands.ShootingOn;
+import edu.wpi.first.wpilibj.Servo;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -139,12 +140,25 @@ public class Team2945Robot extends IterativeRobot {
     /**
      * This function is called periodically during test mode
      */
+    Servo acquisitionBarrelServo = new Servo(RobotMap.PWM_ACQUISITION_BARREL_SERVO);
+    double servo;
     public void testIint() {
         getWatchdog().setEnabled(false);
+
     }
     public void testPeriodic() {
         getWatchdog().feed(); // running feed anyway.. 
         LiveWindow.run();
 
+//        if(OI.madcatz.getRawButton(RobotMap.MADCATZ_BUTTON_X)) {
+//            servo = 1;
+//            acquisitionBarrelServo.set(servo);
+//
+//        }
+//        else if(OI.madcatz.getRawButton(RobotMap.MADCATZ_BUTTON_A)) {
+//            servo = 0;
+//            acquisitionBarrelServo.set(servo);
+//        }
+//        SmartDashboard.putNumber("servo set", servo);
     }
 }
