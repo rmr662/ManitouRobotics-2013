@@ -10,6 +10,7 @@ import com.github.manitourobotics.robot.commands.AcquisitionForward;
 import com.github.manitourobotics.robot.commands.AcquisitionReverse;
 import com.github.manitourobotics.robot.commands.AcquisitionStop;
 import com.github.manitourobotics.robot.commands.ManualDriveTrainControl;
+import com.github.manitourobotics.robot.commands.ShootFrisbee;
 import com.github.manitourobotics.robot.commands.ShootingOn;
 import com.github.manitourobotics.robot.commands.ToggleControls;
 
@@ -56,7 +57,8 @@ public class OI {
 
     private static void executeShootingControls() {
         if(logitech.getRawButton(RobotMap.LOGITECH_BUTTON_ACQUISITION_FORWARD)) {
-            new AcquisitionForward().start();
+            //new AcquisitionForward().start();
+            new ShootFrisbee();
         }
         if(logitech.getRawButton(RobotMap.LOGITECH_BUTTON_ACQUISITION_REVERSE)) {
             new AcquisitionReverse().start();

@@ -47,6 +47,7 @@ public class RobotMap {
     //PWM ports
     public static final int PWM_LEFT_DRIVE_TRAIN_MOTOR = 1;
     public static final int PWM_RIGHT_DRIVE_TRAIN_MOTOR = 2;
+    public static final int PWM_TILTER_OR_CENTER_ARM_MOTOR = 2;
     public static final int PWM_ACQUISITION_BARREL_SERVO = 10;
     
     // relay ports
