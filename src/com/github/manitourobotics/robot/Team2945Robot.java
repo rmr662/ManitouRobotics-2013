@@ -36,6 +36,8 @@ public class Team2945Robot extends IterativeRobot {
     private static final boolean DEBUG_CHASSIS = false;
     private static final boolean DEBUG_CAMERA = false;
 
+    ReceiveTCPData data;
+
     /** 
      * Debugging flagging:
      * Called before an optional output to either the output console or the SmartDashboard. Can be personalized for subsystems see 
@@ -113,6 +115,7 @@ public class Team2945Robot extends IterativeRobot {
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
         getWatchdog().feed();
+        //data = new ReceiveTCPData();
     }
 
     public void teleopInit() {
@@ -123,6 +126,7 @@ public class Team2945Robot extends IterativeRobot {
         //autonomousCommand.cancel();
         getWatchdog().setEnabled(true);
         OI.setupControls();
+        //data.grabData();
     }
 
     /**
