@@ -14,11 +14,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class ShootFrisbee extends CommandGroup {
     
     public ShootFrisbee() {
-        new AcquisitionForward().start();
-        Timer.delay(1);
-        new AcquisitionReverse().start();
-        Timer.delay(1);
-        new AcquisitionStop().start();
+        addSequential(new AcquisitionForward(1));
+        addSequential(new AcquisitionReverse(1));
+        addSequential(new AcquisitionStop());
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

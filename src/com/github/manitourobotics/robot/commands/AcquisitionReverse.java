@@ -13,9 +13,18 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class AcquisitionReverse extends CommandBase {
     
+    // The isFinished method will differ depending weather this command is on a 
+    // timer for usually autonomous things
+    private boolean isUsingTimer = false;
+
     public AcquisitionReverse() {
         // Use requires() here to declare subsystem dependencies
         requires(acquisition);
+    }
+    public AcquisitionReverse(double timeout) {
+        this();
+        setTimeout(timeout);
+        isUsingTimer = true;
     }
 
     // Called just before this Command runs the first time
@@ -31,6 +40,9 @@ public class AcquisitionReverse extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+        if(isUsingTimer) {
+            return isTimedOut();
+        } else
         return true;
     }
 
