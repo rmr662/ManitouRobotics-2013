@@ -13,9 +13,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class ShootFrisbee extends CommandGroup {
     
+        private static final double moveInterval = 0.1;
     public ShootFrisbee() {
-        addSequential(new AcquisitionForward(1));
-        addSequential(new AcquisitionReverse(1));
+        addSequential(new AcquisitionForward(moveInterval));
+        addSequential(new AcquisitionReverse(moveInterval));
         addSequential(new AcquisitionStop());
         // Add Commands here:
         // e.g. addSequential(new Command1());
