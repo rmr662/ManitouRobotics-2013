@@ -13,6 +13,7 @@ import com.github.manitourobotics.robot.commands.ManualDriveTrainControl;
 import com.github.manitourobotics.robot.commands.ShootFrisbee;
 import com.github.manitourobotics.robot.commands.ShootingOn;
 import com.github.manitourobotics.robot.commands.ToggleControls;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -58,13 +59,13 @@ public class OI {
     private static void executeShootingControls() {
         if(logitech.getRawButton(RobotMap.LOGITECH_BUTTON_ACQUISITION_FORWARD)) {
             //new AcquisitionForward().start();
-            new ShootFrisbee();
+            Scheduler.getInstance().add(new ShootFrisbee());
         }
         if(logitech.getRawButton(RobotMap.LOGITECH_BUTTON_ACQUISITION_REVERSE)) {
-            new AcquisitionReverse().start();
+            Scheduler.getInstance().add(new AcquisitionReverse());
         }
         if(logitech.getRawButton(RobotMap.LOGITECH_BUTTON_ACQUISITION_STOP)) {
-            new AcquisitionStop().start();
+            Scheduler.getInstance().add(new AcquisitionStop());
         }
     }
 
