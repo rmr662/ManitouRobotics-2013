@@ -41,7 +41,7 @@ public class OI {
     public OI () {
             // Refresh mode
             String modeName="None1";
-            SmartDashboard.putString("Logitech Mode", modeName);
+            SmartDashboard.putString("Mode", modeName);
     }
 
     //Reset/set controls every teleop init
@@ -104,7 +104,7 @@ public class OI {
             modeName="None2"; // this should never happen
         }
 
-        SmartDashboard.putString("Logitech Mode", modeName);
+        SmartDashboard.putString("Mode", modeName);
     }
 
     public static void toggleMode() {
