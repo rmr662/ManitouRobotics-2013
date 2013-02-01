@@ -8,11 +8,12 @@ package com.github.manitourobotics.robot.commands;
  *
  * @author robotics
  */
-public class ElbowArmsReverse extends CommandBase {
+public class MoveSmallArmsDown extends CommandBase {
     
-    public ElbowArmsReverse() {
+    public MoveSmallArmsDown() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+        requires(smallArms);
     }
 
     // Called just before this Command runs the first time
@@ -21,11 +22,12 @@ public class ElbowArmsReverse extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        smallArms.moveSmallArmsDown();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

@@ -11,7 +11,7 @@ import com.github.manitourobotics.robot.RobotMap;
 public class Acquisition extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-    private Relay acquisitionMotorTop = new Relay(RobotMap.RELAY_ACQUISITION_MOTOR_TOP);
+    private Relay acquisitionMotorTop = new Relay(RobotMap.RELAY_PUSH_FRISBEE);
     
     public void setAcquisitionMotors(Relay.Value value) {
         acquisitionMotorTop.set(value);

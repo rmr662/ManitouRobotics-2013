@@ -28,7 +28,7 @@ public class Shooting extends Subsystem {
 
     public Shooting() {
         // The shootings should never go backwards
-        frontMotor = new Relay(RobotMap.RELAY_SHOOTER_MOTOR_FRONT);
+        frontMotor = new Relay(RobotMap.RELAY_SHOOTER);
         frontMotor.setDirection(Relay.Direction.kForward);
     }
 

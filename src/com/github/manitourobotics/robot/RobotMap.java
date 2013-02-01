@@ -45,19 +45,19 @@ public class RobotMap {
     //see Joystick documentation for mappings for getAxis()
     
     //PWM ports
-    public static final int PWM_LEFT_DRIVE_TRAIN_MOTOR = 1;
-    public static final int PWM_RIGHT_DRIVE_TRAIN_MOTOR = 2;
-    public static final int PWM_TILTER_OR_CENTER_ARM_MOTOR = 2;
-    public static final int PWM_ACQUISITION_BARREL_SERVO = 10;
+    public static final int PWM_LEFT_DRIVE_TRAIN = 1;
+    public static final int PWM_RIGHT_DRIVE_TRAIN = 2;
+    public static final int PWM_TILTER_OR_CENTER_ARM = 3;
+    public static final int PWM_ELBOW_ARMS = 4;
+    public static final int PWM_SERVO_BARREL_STOPPER = 10;
+    public static final int SMALL_ARMS = 7; // pwm but may change
+    public static final int ELBOW_ARMS = 9; // pwm but may change
     
     // relay ports
-    public static final int RELAY_ACQUISITION_MOTOR_TOP = 1;
+    public static final int RELAY_PUSH_FRISBEE = 1;
     // reserve ports 2 and 3 for acquisition
-    public static final int RELAY_SHOOTER_MOTOR_FRONT = 4;
+    public static final int RELAY_SHOOTER = 4;
     // reserve port 5 and 6 for shooting motors
-    public static final int RELAY_SMALL_ARMS = 7;
-    public static final int RELAY_SHOULDER_ARMS = 8;
-    public static final int RELAY_ELBOW_ARMS = 9;
     
     //madcatz shooting axes uses
     public static final int MADCATZ_AXIS_MANUAL_DRIVE_TRAIN_LEFT = MADCATZ_AXIS_LEFT_JOYSTICK_Y;
@@ -72,16 +72,13 @@ public class RobotMap {
     public static final int MADCATZ_BUTTON_SMALL_ARM_DOWN = MADCATZ_BUTTON_A;
     
     //logitech button uses
-    public static final int LOGITECH_BUTTON_ACQUISITION_FORWARD = 1; // trigger
-    public static final int LOGITECH_BUTTON_ACQUISITION_STOP = 2;
-    public static final int LOGITECH_BUTTON_ACQUISITION_REVERSE = 3;
+    public static final int LOGITECH_BUTTON_FRISBEE_PUSH = 1; // trigger
     public static final int LOGITECH_BUTTON_SHOOTER_OFF = 4; 
     public static final int LOGITECH_BUTTON_SHOOTER_ON = 6; 
 
     public static final int LOGITECH_BUTTON_MODE_SWITCH = 11;
     
     //logitech axes uses  
-    public static final int LOGITECH_AXIS_SHOOTING_VERTICAL = Joystick.AxisType.kY.value;
-    public static final int LOGITECH_AXIS_SHOOTING_HORIZONTAL = Joystick.AxisType.kTwist.value;
+    public static final int LOGITECH_AXIS_TILTER = Joystick.AxisType.kY.value;
 }
 

@@ -8,11 +8,12 @@ package com.github.manitourobotics.robot.commands;
  *
  * @author robotics
  */
-public class ElbowArmsStop extends CommandBase {
+public class StopSmallArms extends CommandBase {
     
-    public ElbowArmsStop() {
+    public StopSmallArms() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+        requires(smallArms);
     }
 
     // Called just before this Command runs the first time
@@ -21,6 +22,7 @@ public class ElbowArmsStop extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        smallArms.stopSmallArms();
     }
 
     // Make this return true when this Command no longer needs to run execute()

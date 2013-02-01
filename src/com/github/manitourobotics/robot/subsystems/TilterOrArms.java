@@ -7,23 +7,29 @@ package com.github.manitourobotics.robot.subsystems;
 import com.github.manitourobotics.robot.RobotMap;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
  * @author robotics
  */
-public class TilterOrArms extends PIDSubsystem {
+//public class TilterOrArms extends PIDSubsystem {
+public class TilterOrArms extends Subsystem {
 
     private static final double Kp = 0.0;
     private static final double Ki = 0.0;
     private static final double Kd = 0.0;
 
-    Jaguar tilterJaguar = new Jaguar(RobotMap.PWM_TILTER_OR_CENTER_ARM_MOTOR);
+    Jaguar tilterJaguar = new Jaguar(RobotMap.PWM_TILTER_OR_CENTER_ARM);
     static final int SPEED = 1;
+
+    public void setTilterOrArmsSpeed(double speed) {
+        tilterJaguar.set(speed);
+    }
 
     // Initialize your subsystem here
     public TilterOrArms() {
-        super("TilterOrArms", Kp, Ki, Kd);
+        //super("TilterOrArms", Kp, Ki, Kd);
 
         // Use these to get going:
         // setSetpoint() -  Sets where the PID controller should move the system

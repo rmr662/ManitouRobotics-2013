@@ -20,8 +20,8 @@ import com.github.manitourobotics.robot.commands.ManualDriveTrainControl;
 public class Chassis extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-    private Jaguar leftDriveTrainMotor = new Jaguar(RobotMap.PWM_LEFT_DRIVE_TRAIN_MOTOR);
-    private Jaguar rightDriveTrainMotor = new Jaguar(RobotMap.PWM_RIGHT_DRIVE_TRAIN_MOTOR);
+    private Jaguar leftDriveTrainMotor = new Jaguar(RobotMap.PWM_LEFT_DRIVE_TRAIN);
+    private Jaguar rightDriveTrainMotor = new Jaguar(RobotMap.PWM_RIGHT_DRIVE_TRAIN);
     private RobotDrive drive = new RobotDrive(leftDriveTrainMotor, rightDriveTrainMotor);
 
     public RobotDrive getRobotDrive() {

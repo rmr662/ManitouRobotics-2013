@@ -8,15 +8,30 @@ package com.github.manitourobotics.robot.commands;
  *
  * @author robotics
  */
-public class SmallArmsReverse extends CommandBase {
+public class MoveServoUp extends CommandBase {
     
-    public SmallArmsReverse() {
+    // The purpose of the timeout is to allow this command to be added to a command group and 
+    // Not execute the next command right away
+    private double timeout;
+
+    // timeoutEnabled allows one to call the command without a timeout by changing the 
+    // isFinished conditions
+    private boolean timeoutEnabled = false;
+
+    public MoveServoUp() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+        requires(barrelStopper);
+    }
+
+    public MoveServoUp(double timeout) {
+        this();
+        timeoutEnabled = true;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        barrelStopper.setServoUp();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -25,7 +40,10 @@ public class SmallArmsReverse extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        if (timeoutEnabled && isTimedOut()) {
+            return true;
+        } else 
+            return false;
     }
 
     // Called once after isFinished returns true

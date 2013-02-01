@@ -6,6 +6,10 @@ import com.github.manitourobotics.robot.OI;
 import com.github.manitourobotics.robot.subsystems.Chassis;
 import com.github.manitourobotics.robot.subsystems.Shooting;
 import com.github.manitourobotics.robot.subsystems.Acquisition;
+import com.github.manitourobotics.robot.subsystems.BarrelStopper;
+import com.github.manitourobotics.robot.subsystems.ElbowArms;
+import com.github.manitourobotics.robot.subsystems.SmallArms;
+import com.github.manitourobotics.robot.subsystems.TilterOrArms;
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -20,6 +24,10 @@ public abstract class CommandBase extends Command {
     public static Chassis chassis = new Chassis();
     public static Acquisition acquisition = new Acquisition();
     public static Shooting shooting = new Shooting();
+    public static BarrelStopper barrelStopper = new BarrelStopper();
+    public static SmallArms smallArms = new SmallArms();
+    public static ElbowArms elbowArms = new ElbowArms();
+    public static TilterOrArms tilterOrArms = new TilterOrArms();
 
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely
@@ -32,6 +40,10 @@ public abstract class CommandBase extends Command {
         // Show what command your subsystem is running on the SmartDashboard
         SmartDashboard.putData(chassis);
         SmartDashboard.putData(shooting);
+        SmartDashboard.putData(barrelStopper);
+        SmartDashboard.putData(smallArms);
+        SmartDashboard.putData(elbowArms);
+        SmartDashboard.putData(tilterOrArms);
     }
 
     public CommandBase(String name) {

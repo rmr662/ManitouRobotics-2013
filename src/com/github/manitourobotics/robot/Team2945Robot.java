@@ -101,12 +101,11 @@ public class Team2945Robot extends IterativeRobot {
         // schedule the autonomous command (example)
         getWatchdog().setEnabled(true);
         startAutonomousSubsystems();
-        //autonomousCommand.start();
     }
 
     public void startAutonomousSubsystems() {
-        new AcquisitionForward().start();
-        new ShootingOn().start();
+        Scheduler.getInstance().add(new AcquisitionForward());
+        Scheduler.getInstance().add(new ShootingOn());
     }
 
     /**
@@ -119,11 +118,6 @@ public class Team2945Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
-	// This makes sure that the autonomous stops running when
-        // teleop starts running. If you want the autonomous to 
-        // continue until interrupted by another command, remove
-        // this line or comment it out.
-        //autonomousCommand.cancel();
         getWatchdog().setEnabled(true);
         OI.setupControls();
         //data.grabData();
@@ -144,8 +138,6 @@ public class Team2945Robot extends IterativeRobot {
     /**
      * This function is called periodically during test mode
      */
-    Servo acquisitionBarrelServo = new Servo(RobotMap.PWM_ACQUISITION_BARREL_SERVO);
-    double servo;
     public void testIint() {
         getWatchdog().setEnabled(false);
 
@@ -154,15 +146,5 @@ public class Team2945Robot extends IterativeRobot {
         getWatchdog().feed(); // running feed anyway.. 
         LiveWindow.run();
 
-//        if(OI.madcatz.getRawButton(RobotMap.MADCATZ_BUTTON_X)) {
-//            servo = 1;
-//            acquisitionBarrelServo.set(servo);
-//
-//        }
-//        else if(OI.madcatz.getRawButton(RobotMap.MADCATZ_BUTTON_A)) {
-//            servo = 0;
-//            acquisitionBarrelServo.set(servo);
-//        }
-//        SmartDashboard.putNumber("servo set", servo);
     }
 }

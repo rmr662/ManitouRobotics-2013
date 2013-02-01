@@ -10,9 +10,17 @@ import com.github.manitourobotics.robot.commands.AcquisitionForward;
 import com.github.manitourobotics.robot.commands.AcquisitionReverse;
 import com.github.manitourobotics.robot.commands.AcquisitionStop;
 import com.github.manitourobotics.robot.commands.ManualDriveTrainControl;
+import com.github.manitourobotics.robot.commands.ManualElbowControl;
+import com.github.manitourobotics.robot.commands.ManualShoulderControl;
+import com.github.manitourobotics.robot.commands.ManualTilterControl;
+import com.github.manitourobotics.robot.commands.MoveSmallArmsDown;
+import com.github.manitourobotics.robot.commands.MoveSmallArmsUp;
 import com.github.manitourobotics.robot.commands.ShootFrisbee;
+import com.github.manitourobotics.robot.commands.ShootingOff;
 import com.github.manitourobotics.robot.commands.ShootingOn;
+import com.github.manitourobotics.robot.commands.StopSmallArms;
 import com.github.manitourobotics.robot.commands.ToggleControls;
+import com.github.manitourobotics.robot.subsystems.TilterOrArms;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
@@ -54,19 +62,27 @@ public class OI {
 
     private static void executeClimbingControls() {
         // nothing yet
+        if(madcatz.getRawButton(RobotMap.MADCATZ_BUTTON_A)) {
+            Scheduler.getInstance().add(new MoveSmallArmsDown());
+        } else if(madcatz.getRawButton(RobotMap.MADCATZ_BUTTON_X)) {
+            Scheduler.getInstance().add(new MoveSmallArmsUp());
+        } else {
+            Scheduler.getInstance().add(new StopSmallArms());
+        }
     }
 
     private static void executeShootingControls() {
-        if(logitech.getRawButton(RobotMap.LOGITECH_BUTTON_ACQUISITION_FORWARD)) {
-            //new AcquisitionForward().start();
+
+        if(logitech.getRawButton(RobotMap.LOGITECH_BUTTON_FRISBEE_PUSH)) {
             Scheduler.getInstance().add(new ShootFrisbee());
         }
-        if(logitech.getRawButton(RobotMap.LOGITECH_BUTTON_ACQUISITION_REVERSE)) {
-            Scheduler.getInstance().add(new AcquisitionReverse());
+        if(logitech.getRawButton(RobotMap.LOGITECH_BUTTON_SHOOTER_OFF)) {
+            Scheduler.getInstance().add(new ShootingOff());
         }
-        if(logitech.getRawButton(RobotMap.LOGITECH_BUTTON_ACQUISITION_STOP)) {
-            Scheduler.getInstance().add(new AcquisitionStop());
+        if(logitech.getRawButton(RobotMap.LOGITECH_BUTTON_SHOOTER_ON)) {
+            Scheduler.getInstance().add(new ShootingOn());
         }
+
     }
 
     private static void executeAcquisitionControls() {
@@ -104,15 +120,19 @@ public class OI {
     }
 
     private static void setupClimbingControls() {
-        // Stop any shooting stuff
-        new AcquisitionStop().start();
-        // the manualdrivetrain controls checks modes
+        Scheduler.getInstance().add(new ShootingOff());
+
+        Scheduler.getInstance().add(new ManualElbowControl());
+        Scheduler.getInstance().add(new ManualShoulderControl());
+
     }
 
     private static void setupShootingControls() {
-        new ManualDriveTrainControl().start();
-        new AcquisitionForward().start();
-        new ShootingOn().start();
+        Scheduler.getInstance().add(new StopSmallArms());
+
+        Scheduler.getInstance().add(new ManualDriveTrainControl());
+        Scheduler.getInstance().add(new ManualTilterControl());
+        Scheduler.getInstance().add(new ShootingOn());
     }
 
     //// CREATING BUTTONS

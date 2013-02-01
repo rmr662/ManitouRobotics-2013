@@ -4,15 +4,19 @@
  */
 package com.github.manitourobotics.robot.commands;
 
+import com.github.manitourobotics.robot.OI;
+import com.github.manitourobotics.robot.RobotMap;
+
 /**
  *
  * @author robotics
  */
-public class ShoulderArmsStop extends CommandBase {
+public class ManualTilterControl extends CommandBase {
     
-    public ShoulderArmsStop() {
+    public ManualTilterControl() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+        requires(tilterOrArms);
     }
 
     // Called just before this Command runs the first time
@@ -21,15 +25,22 @@ public class ShoulderArmsStop extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        tilterOrArms.setTilterOrArmsSpeed(OI.madcatz.getRawAxis(RobotMap.LOGITECH_AXIS_TILTER));
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        if(OI.getMode() == RobotMap.MODE_SHOOTING) {
+            return false;
+        } else
+        {
+            return true;
+        }
     }
 
     // Called once after isFinished returns true
     protected void end() {
+        tilterOrArms.setTilterOrArmsSpeed(0);
     }
 
     // Called when another command which requires one or more of the same
