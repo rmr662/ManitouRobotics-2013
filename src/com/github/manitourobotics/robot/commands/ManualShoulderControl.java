@@ -4,8 +4,8 @@
  */
 package com.github.manitourobotics.robot.commands;
 
-import com.github.manitourobotics.robot.OI;
 import com.github.manitourobotics.robot.RobotMap;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -25,12 +25,14 @@ public class ManualShoulderControl extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        tilterOrArms.setTilterOrArmsSpeed(OI.madcatz.getRawAxis(RobotMap.MADCATZ_AXIS_SHOULDER_ARM_CONTROL));
+        double speed = oi.madcatz.getRawAxis(RobotMap.MADCATZ_AXIS_SHOULDER_ARM_CONTROL);
+        tilterOrArms.setTilterOrArmsSpeed(speed);
+        SmartDashboard.putString("shoulderControl", Double.toString(speed));
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if(OI.getMode() == RobotMap.MODE_CLIMBING) {
+        if(oi.getMode() == RobotMap.MODE_CLIMBING) {
             return false;
         } else
         {
@@ -41,6 +43,7 @@ public class ManualShoulderControl extends CommandBase {
     // Called once after isFinished returns true
     protected void end() {
         tilterOrArms.setTilterOrArmsSpeed(0);
+        SmartDashboard.putString("shoulderControl", "Done");
     }
 
     // Called when another command which requires one or more of the same

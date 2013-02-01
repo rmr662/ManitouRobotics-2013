@@ -4,6 +4,8 @@
  */
 package com.github.manitourobotics.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 /**
  *
  * @author robotics
@@ -32,6 +34,7 @@ public class MoveBarrelServoUp extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
         barrelStopper.setServoUp();
+        SmartDashboard.putString("barrelStopper", "Up");
     }
 
     // Called repeatedly when this Command is scheduled to run

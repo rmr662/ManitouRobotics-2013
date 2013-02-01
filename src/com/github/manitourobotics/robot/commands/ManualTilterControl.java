@@ -6,6 +6,7 @@ package com.github.manitourobotics.robot.commands;
 
 import com.github.manitourobotics.robot.OI;
 import com.github.manitourobotics.robot.RobotMap;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -25,7 +26,10 @@ public class ManualTilterControl extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        tilterOrArms.setTilterOrArmsSpeed(OI.madcatz.getRawAxis(RobotMap.LOGITECH_AXIS_TILTER));
+        double speed = OI.logitech.getRawAxis(RobotMap.LOGITECH_AXIS_TILTER);
+        tilterOrArms.setTilterOrArmsSpeed(speed);
+        SmartDashboard.putString("TilterControl", Double.toString(speed));
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -41,6 +45,7 @@ public class ManualTilterControl extends CommandBase {
     // Called once after isFinished returns true
     protected void end() {
         tilterOrArms.setTilterOrArmsSpeed(0);
+        SmartDashboard.putString("TilterControl", "Done");
     }
 
     // Called when another command which requires one or more of the same

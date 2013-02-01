@@ -4,6 +4,8 @@
  */
 package com.github.manitourobotics.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 /**
  *
  * @author robotics
@@ -32,6 +34,7 @@ public class MoveBarrelServoDown extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
         barrelStopper.setServoDown();
+        SmartDashboard.putString("barrelStopper", "Down");
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -42,8 +45,9 @@ public class MoveBarrelServoDown extends CommandBase {
     protected boolean isFinished() {
         if (timeoutEnabled && isTimedOut()) {
             return true;
-        } else 
+        } else {
             return false;
+        }
     }
 
     // Called once after isFinished returns true
