@@ -120,7 +120,6 @@ public class OI {
     }
 
     private static void setupClimbingControls() {
-        Scheduler.getInstance().add(new ShootingOff());
 
         Scheduler.getInstance().add(new ManualElbowControl());
         Scheduler.getInstance().add(new ManualShoulderControl());
