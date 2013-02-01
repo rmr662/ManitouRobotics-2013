@@ -41,7 +41,7 @@ public class OI {
     public OI () {
             // Refresh mode
             String modeName="None1";
-            SmartDashboard.putString("Logitech Mode", modeName);
+            SmartDashboard.putString("Mode", modeName);
     }
 
     //Reset/set controls every teleop init
@@ -104,7 +104,7 @@ public class OI {
             modeName="None2"; // this should never happen
         }
 
-        SmartDashboard.putString("Logitech Mode", modeName);
+        SmartDashboard.putString("Mode", modeName);
     }
 
     public static void toggleMode() {
@@ -120,8 +120,8 @@ public class OI {
     }
 
     private static void setupClimbingControls() {
-        Scheduler.getInstance().add(new ShootingOff());
 
+        // controls in command instead of oi
         Scheduler.getInstance().add(new ManualElbowControl());
         Scheduler.getInstance().add(new ManualShoulderControl());
 
@@ -130,9 +130,12 @@ public class OI {
     private static void setupShootingControls() {
         Scheduler.getInstance().add(new StopSmallArms());
 
-        Scheduler.getInstance().add(new ManualDriveTrainControl());
-        Scheduler.getInstance().add(new ManualTilterControl());
-        Scheduler.getInstance().add(new ShootingOn());
+        Scheduler.getInstance().add(new ManualDriveTrainControl()); // controls 
+        // in command instead of oi
+        Scheduler.getInstance().add(new ManualTilterControl()); 
+
+        Scheduler.getInstance().add(new ShootingOn()); // The shooting motors 
+        // should always be on in shooting mode
     }
 
     //// CREATING BUTTONS

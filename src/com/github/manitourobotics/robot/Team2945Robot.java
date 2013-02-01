@@ -36,7 +36,7 @@ public class Team2945Robot extends IterativeRobot {
     private static final boolean DEBUG_CHASSIS = false;
     private static final boolean DEBUG_CAMERA = false;
 
-    ReceiveTCPData data;
+    //ReceiveTCPData data;
 
     /** 
      * Debugging flagging:

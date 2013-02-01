@@ -79,6 +79,6 @@ public class RobotMap {
     public static final int LOGITECH_BUTTON_MODE_SWITCH = 11;
     
     //logitech axes uses  
-    public static final int LOGITECH_AXIS_TILTER = Joystick.AxisType.kY.value;
+    public static final int LOGITECH_AXIS_TILTER = Joystick.AxisType.kZ.value;
 }
 
