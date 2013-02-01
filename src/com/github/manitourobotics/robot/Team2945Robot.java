@@ -118,9 +118,9 @@ public class Team2945Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
-        getWatchdog().setEnabled(true);
+        getWatchdog().setEnabled(false);
         OI.setupControls();
-        //data.grabData();
+        ReceiveTCPData data = new ReceiveTCPData();
     }
 
     /**
@@ -129,6 +129,7 @@ public class Team2945Robot extends IterativeRobot {
     public void teleopPeriodic() {
         getWatchdog().feed();
 
+        //data.grabData();
         OI.executeControls();
         OI.displayControls();
         
