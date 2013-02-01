@@ -121,6 +121,7 @@ public class OI {
 
     private static void setupClimbingControls() {
 
+        // controls in command instead of oi
         Scheduler.getInstance().add(new ManualElbowControl());
         Scheduler.getInstance().add(new ManualShoulderControl());
 
@@ -129,9 +130,12 @@ public class OI {
     private static void setupShootingControls() {
         Scheduler.getInstance().add(new StopSmallArms());
 
-        Scheduler.getInstance().add(new ManualDriveTrainControl());
-        Scheduler.getInstance().add(new ManualTilterControl());
-        Scheduler.getInstance().add(new ShootingOn());
+        Scheduler.getInstance().add(new ManualDriveTrainControl()); // controls 
+        // in command instead of oi
+        Scheduler.getInstance().add(new ManualTilterControl()); 
+
+        Scheduler.getInstance().add(new ShootingOn()); // The shooting motors 
+        // should always be on in shooting mode
     }
 
     //// CREATING BUTTONS
