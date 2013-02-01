@@ -29,6 +29,7 @@ public class MoveBarrelServoDown extends CommandBase {
     public MoveBarrelServoDown(double timeout) {
         this();
         timeoutEnabled = true;
+        setTimeout(timeout);
     }
 
     // Called just before this Command runs the first time
