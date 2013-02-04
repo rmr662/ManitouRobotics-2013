@@ -15,10 +15,11 @@ import javax.microedition.io.*;
  * @author robotics
  */
 public class ReceiveTCPData {
-    StreamConnection streamConnection;
+    SocketConnection connection;
     InputStream inputStream;
-    DataInputStream data;
     BufferedReader in;
+    String data;
+
     private boolean isConnected = false;
 
     public ReceiveTCPData() {
@@ -28,8 +29,9 @@ public class ReceiveTCPData {
     public void connectToSocket() {
         try {
             
-        streamConnection = (StreamConnection) Connector.open("socket://10.29.45.4:1180");
-        inputStream = streamConnection.openInputStream();
+        connection = (SocketConnection) Connector.open("socket://10.29.45.4:1180");
+        isConnected = true;
+        in = new BufferedReader(new InputStreamReader( connection.openInputStream()));
 
         } catch ( IOException ex) {
             ex.printStackTrace();
@@ -37,23 +39,22 @@ public class ReceiveTCPData {
         }
     }
 
-    public void grabData() {
+    public String grabData() {
         if (!isConnected) {
             connectToSocket();
-            return;
+            return null;
         }
         try {
-            int b;
-            if ((b = inputStream.read()) != -1) {
-                SmartDashboard.putNumber("tcpdata", b);
-                System.out.println(b);
-                SmartDashboard.putString("Socket Status", "recieving data");
-            }
+                data = in.readLine();
+                return data;
         } catch (IOException ex) {
+            isConnected = false;
+            connectToSocket();
+
             ex.printStackTrace();
             SmartDashboard.putString("Socket Status", "exception recieving data");
+            return null;
         }
-        }
-
-    
+    }
 }
+    
