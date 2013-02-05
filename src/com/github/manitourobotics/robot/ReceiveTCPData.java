@@ -30,10 +30,16 @@ public class ReceiveTCPData {
         try {
             
         connection = (SocketConnection) Connector.open("socket://10.29.45.4:1180");
-        isConnected = true;
         in = new BufferedReader(new InputStreamReader( connection.openInputStream()));
+        isConnected = true;
 
         } catch ( IOException ex) {
+            isConnected = false;
+            try {
+                connection.close();
+            } catch (IOException ex1) {
+                ex1.printStackTrace();
+            }
             ex.printStackTrace();
             SmartDashboard.putString("Socket Status", "Dead");
         }
@@ -42,18 +48,22 @@ public class ReceiveTCPData {
     public String grabData() {
         if (!isConnected) {
             connectToSocket();
-            return null;
+            return "";
         }
         try {
                 data = in.readLine();
                 return data;
         } catch (IOException ex) {
-            isConnected = false;
-            connectToSocket();
+            try {
+                isConnected = false;
+                connection.close();
+        } catch (IOException ex1) {
+                ex1.printStackTrace();
+        }
+        ex.printStackTrace();
+        SmartDashboard.putString("Socket Status", "exception recieving data");
+        return "";
 
-            ex.printStackTrace();
-            SmartDashboard.putString("Socket Status", "exception recieving data");
-            return null;
         }
     }
 }
