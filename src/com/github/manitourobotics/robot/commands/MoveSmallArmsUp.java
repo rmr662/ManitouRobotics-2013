@@ -24,7 +24,7 @@ public class MoveSmallArmsUp extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-                smallArms.moveSmallArmsUp();
+        smallArms.moveSmallArmsUp();
         Logger.log(Logger.SMALL_ARMS, Integer.toString(Logger.UP));
     }
 
