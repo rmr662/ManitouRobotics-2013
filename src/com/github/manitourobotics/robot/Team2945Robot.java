@@ -37,6 +37,7 @@ public class Team2945Robot extends IterativeRobot {
     private static final boolean DEBUG_CAMERA = false;
 
     ClientSocket socket = new ClientSocket("10.29.45.4", 1180);
+    //ReceiveTCPData data;
 
     /** 
      * Debugging flagging:
@@ -95,7 +96,6 @@ public class Team2945Robot extends IterativeRobot {
 
         // Initialize all subsystems
         CommandBase.init();
-        socket.start();
     }
 
     public void autonomousInit() {
@@ -120,6 +120,8 @@ public class Team2945Robot extends IterativeRobot {
     public void teleopInit() {
         getWatchdog().setEnabled(false);
         OI.setupControls();
+        //data = new ReceiveTCPData();
+        socket.start();
     }
 
     /**
@@ -127,13 +129,15 @@ public class Team2945Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         getWatchdog().feed();
+        OI.executeControls();
+        OI.displayControls();
+        Scheduler.getInstance().run();
+        //String tcpString = data.grabData();
+        //SmartDashboard.putString("data", tcpString);
+        //System.out.println("data: " + tcpString);
         SmartDashboard.putString("data", socket.getLastData());
         System.out.println("data: " + socket.getLastData());
 
-        OI.executeControls();
-        OI.displayControls();
-        
-        Scheduler.getInstance().run();
     }
     
     /**

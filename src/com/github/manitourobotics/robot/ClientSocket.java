@@ -38,9 +38,23 @@ public class ClientSocket extends Thread implements Socket {
 		}
 	}
 
+    private void reconnect() {
+
+		try {
+			connection = ((SocketConnection) (Connector.open("socket://" + this.host
+					+ ":" + this.port)));
+		} catch (IOException e) {
+			e.printStackTrace();
+			connection = null;
+		}
+    }
+
 	public void run() {
 		running = true;
 		while (running) {
+            if(connection == null) {
+                reconnect(); 
+            }
 			poll();
 			try {
 				Thread.sleep(POLL_TIME);

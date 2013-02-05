@@ -37,7 +37,7 @@ public class ReceiveTCPData {
             isConnected = false;
             try {
                 connection.close();
-            } catch (IOException ex1) {
+            } catch (Exception ex1) {
                 ex1.printStackTrace();
             }
             ex.printStackTrace();
