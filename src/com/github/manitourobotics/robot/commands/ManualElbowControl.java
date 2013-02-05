@@ -4,6 +4,7 @@
  */
 package com.github.manitourobotics.robot.commands;
 
+import com.github.manitourobotics.robot.Logger;
 import com.github.manitourobotics.robot.RobotMap;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -26,6 +27,7 @@ public class ManualElbowControl extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         double speed = oi.madcatz.getRawAxis(RobotMap.MADCATZ_AXIS_ELBOW_ARM_CONTROL);
+        Logger.log(Logger.ELBOW_ARMS, Double.toString(speed));
         elbowArms.setElbowArmSpeed(speed);
         SmartDashboard.putString("elbowControl", Double.toString(speed));
     }

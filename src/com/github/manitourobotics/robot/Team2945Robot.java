@@ -121,6 +121,7 @@ public class Team2945Robot extends IterativeRobot {
         getWatchdog().setEnabled(true);
         OI.setupControls();
         //data.grabData();
+        Logger logger = new Logger();
     }
 
     /**

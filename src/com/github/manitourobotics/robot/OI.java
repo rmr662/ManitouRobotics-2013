@@ -69,6 +69,13 @@ public class OI {
         } else {
             Scheduler.getInstance().add(new StopSmallArms());
         }
+
+        if(madcatz.getRawButton(RobotMap.MADCATZ_BUTTON_B)) {
+            Logger.play();
+        }
+        if(madcatz.getRawButton(RobotMap.MADCATZ_BUTTON_Y)) {
+            Logger.loggingToggle();
+        }
     }
 
     private static void executeShootingControls() {
