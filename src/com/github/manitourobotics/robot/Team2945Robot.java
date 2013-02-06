@@ -95,6 +95,7 @@ public class Team2945Robot extends IterativeRobot {
 
         // Initialize all subsystems
         CommandBase.init();
+        getWatchdog().setExpiration(1); // More code, slower loop execution time
     }
 
     public void autonomousInit() {
