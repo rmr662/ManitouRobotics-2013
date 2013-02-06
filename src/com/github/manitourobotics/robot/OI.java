@@ -10,8 +10,8 @@ import com.github.manitourobotics.robot.commands.AcquisitionForward;
 import com.github.manitourobotics.robot.commands.AcquisitionReverse;
 import com.github.manitourobotics.robot.commands.AcquisitionStop;
 import com.github.manitourobotics.robot.commands.ManualDriveTrainControl;
-import com.github.manitourobotics.robot.commands.ManualElbowControl;
-import com.github.manitourobotics.robot.commands.ManualShoulderControl;
+import com.github.manitourobotics.robot.commands.ElbowControl;
+import com.github.manitourobotics.robot.commands.ShoulderControl;
 import com.github.manitourobotics.robot.commands.ManualTilterControl;
 import com.github.manitourobotics.robot.commands.MoveSmallArmsDown;
 import com.github.manitourobotics.robot.commands.MoveSmallArmsUp;
@@ -146,8 +146,8 @@ public class OI {
     private static void setupClimbingControls() {
 
         // controls in command instead of oi
-        Scheduler.getInstance().add(new ManualElbowControl());
-        Scheduler.getInstance().add(new ManualShoulderControl());
+        Scheduler.getInstance().add(new ElbowControl());
+        Scheduler.getInstance().add(new ShoulderControl());
 
     }
 
