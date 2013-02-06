@@ -46,11 +46,11 @@ public class ElbowControl extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if(oi.getMode() == RobotMap.MODE_CLIMBING) {
         if(!manualControl) {
-            return true;
+            return false;
         } 
-        return false;
+        if(oi.getMode() == RobotMap.MODE_CLIMBING) {
+            return false;
         } else
         {
             return true;
@@ -59,7 +59,7 @@ public class ElbowControl extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-        if(!manualControl) {
+        if(manualControl) {
             elbowArms.setElbowArmSpeed(0);
         }
         SmartDashboard.putString("elbowControl", "Done");
