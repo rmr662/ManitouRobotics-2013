@@ -132,6 +132,7 @@ public class Team2945Robot extends IterativeRobot {
 
         OI.executeControls();
         OI.displayControls();
+        Logger.play();
         
         Scheduler.getInstance().run();
     }

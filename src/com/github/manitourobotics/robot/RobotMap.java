@@ -22,6 +22,7 @@ public class RobotMap {
     public static final int MODE_SHOOTING = 1;
     public static final int MODE_CLIMBING = 2;
     public static final int MODE_AUTONOMOUS = 3;
+    public static final int MODE_PLAY = 4;
     
     //joystick/controller ports
     public static final int JOYSTICK_MADCATZ = 1;

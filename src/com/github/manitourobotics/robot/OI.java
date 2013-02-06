@@ -30,11 +30,24 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 public class OI {
     public static Joystick madcatz = new Joystick(RobotMap.JOYSTICK_MADCATZ);
     public static Joystick logitech = new Joystick(RobotMap.JOYSTICK_LOGITECH);
+    static boolean previousRecordButtonState = false;
+    static boolean previousPlayButtonState = false;
+    static boolean playButtonState;
+    static boolean loggingButtonState;
     
     
-    static int mode;
-    static Button buttonMode = new JoystickButton(logitech, RobotMap.LOGITECH_BUTTON_MODE_SWITCH);
+    private static int previousMode;
+    private static int mode;
+    private static Button buttonMode = new JoystickButton(logitech, RobotMap.LOGITECH_BUTTON_MODE_SWITCH);
     
+    public static void togglePlayMode() {
+        if(mode == RobotMap.MODE_PLAY) {
+            mode = previousMode;
+        } else {
+            previousMode = mode;
+            mode = RobotMap.MODE_PLAY;
+        }
+    }
     public static int getMode() {
         return mode;
     }
@@ -70,12 +83,16 @@ public class OI {
             Scheduler.getInstance().add(new StopSmallArms());
         }
 
-        if(madcatz.getRawButton(RobotMap.MADCATZ_BUTTON_B)) {
-            Logger.play();
+        playButtonState = madcatz.getRawButton(RobotMap.MADCATZ_BUTTON_B);
+        if(playButtonState && !previousPlayButtonState) {
+            Logger.togglePlay();
         }
-        if(madcatz.getRawButton(RobotMap.MADCATZ_BUTTON_Y)) {
+        loggingButtonState = madcatz.getRawButton(RobotMap.MADCATZ_BUTTON_Y);
+        if(loggingButtonState && !previousRecordButtonState) {
             Logger.loggingToggle();
         }
+        previousRecordButtonState = loggingButtonState;
+        previousPlayButtonState = playButtonState;
     }
 
     private static void executeShootingControls() {
