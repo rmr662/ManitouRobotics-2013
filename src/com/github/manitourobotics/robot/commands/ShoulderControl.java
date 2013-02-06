@@ -28,7 +28,6 @@ public class ShoulderControl extends CommandBase {
         this();
         manualControl = false;
         this.speed = speed;
-
     }
 
 

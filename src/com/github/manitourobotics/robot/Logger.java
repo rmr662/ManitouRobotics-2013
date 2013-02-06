@@ -138,12 +138,14 @@ public class Logger {
             }
         } catch (EOFException eof) {
             System.out.println("End of file");
-            stopPlay();
             eof.printStackTrace();
+            stopPlay();
+            return;
         } catch (Exception e){
             playing = false;
             stopPlay();
             e.printStackTrace(); 
+            return;
         }
         SmartDashboard.putString("Logger", "Done Playing");
     }
