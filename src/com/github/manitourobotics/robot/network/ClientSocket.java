@@ -1,4 +1,4 @@
-package com.github.manitourobotics.robot;
+package com.github.manitourobotics.robot.network;
 
 import java.io.IOException;
 import java.io.InputStreamReader;

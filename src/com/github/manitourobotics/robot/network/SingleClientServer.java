@@ -1,5 +1,8 @@
-package com.github.manitourobotics.robot;
+package com.github.manitourobotics.robot.network;
 
+import com.github.manitourobotics.robot.network.Socket;
+import com.github.manitourobotics.robot.network.SocketListener;
+import com.github.manitourobotics.robot.network.SocketEvent;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;

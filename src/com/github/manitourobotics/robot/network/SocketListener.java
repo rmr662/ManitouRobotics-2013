@@ -1,4 +1,4 @@
-package com.github.manitourobotics.robot;
+package com.github.manitourobotics.robot.network;
 
 public interface SocketListener {
 	

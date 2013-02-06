@@ -8,6 +8,7 @@
 package com.github.manitourobotics.robot;
 
 
+import com.github.manitourobotics.robot.network.ClientSocket;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;

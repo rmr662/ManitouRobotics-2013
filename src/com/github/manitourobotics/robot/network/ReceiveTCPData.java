@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.github.manitourobotics.robot;
+package com.github.manitourobotics.robot.network;
 
 import com.sun.squawk.io.BufferedReader;
 import edu.wpi.first.wpilibj.networktables2.stream.SocketConnectionStream;
