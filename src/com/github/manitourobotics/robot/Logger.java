@@ -150,6 +150,9 @@ public class Logger {
     }
 
     public static void loggingToggle() {
+        if(playing) {
+            return;
+        }
         if(!recording) {
             SmartDashboard.putString("Logger", "Logging");
             timer.start();
