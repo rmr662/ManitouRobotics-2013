@@ -44,17 +44,26 @@ public class Logger {
     public static final int DOWN = 2;
     public static final int STOP = 3;
 
-    public static double timeStamp;
-    public static int commandName;
-    public static String content;
+    private static double timeStamp = 0;
+    private static int commandName;
+    private static String content;
+    private static int fileNumber = 1;
+    
 
     public Logger() {
         try {
-            fileConnection = (FileConnection) Connector.open("file://test.txt", Connector.READ_WRITE);
-            fileConnection.delete();
+            // Find a unique filename test<x>.txt where x is a number. Never erase a log
+            // One must move the log to final.txt (Get a ftp client under /ni-rt/system/) 
+            // to actually read the log 
+            do {
+            fileConnection = (FileConnection) Connector.open("file://test" + Integer.toString(fileNumber) + ".txt", Connector.READ_WRITE);
+
+            fileNumber += 1;
+            } while (!fileConnection.exists());
+
             fileConnection.create();
-            out = fileConnection.openDataOutputStream();
-            in = fileConnection.openDataInputStream();
+
+
             SmartDashboard.putString("Logger", "init");
         } catch (Exception e) {
             e.printStackTrace();
@@ -72,20 +81,27 @@ public class Logger {
         if(recording) {
             return;
         }
+        try {
+        in = fileConnection.openDataInputStream();
+        } catch (IOException e) {
+            System.out.println("cannot read file");
+        }
+
         OI.togglePlayMode();
         SmartDashboard.putString("Logger", "Playing");
         playing = true;
-        try {
-            in.reset();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
         timer.reset();
         timer.start();
+        timeStamp = 0;
     }
     public static void stopPlay() {
         OI.togglePlayMode();
         timer.reset();
+        try {
+            in.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
         playing = false;
         SmartDashboard.putString("Logger", "Done Playing");
 
@@ -153,17 +169,20 @@ public class Logger {
         if(playing) {
             return;
         }
-        if(!recording) {
+        if(!recording) { // start logging
             SmartDashboard.putString("Logger", "Logging");
             timer.start();
             recording = true;
-            return;
+            try {
+                out = fileConnection.openDataOutputStream();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
-        else {
+        else { // clean up from logging
             SmartDashboard.putString("Logger", "Done Logging");
-            recording = false;
-            timer.stop();
-            return;
+            recording = false; 
+            timer.stop(); 
         }
     }
 
