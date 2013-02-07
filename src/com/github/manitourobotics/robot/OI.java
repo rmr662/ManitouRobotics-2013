@@ -92,7 +92,7 @@ public class OI {
 
         playButtonState = madcatz.getRawButton(RobotMap.MADCATZ_BUTTON_B);
         if(playButtonState && !previousPlayButtonState) {
-            Logger.togglePlay();
+            Logger.togglePlayback();
         }
         loggingButtonState = madcatz.getRawButton(RobotMap.MADCATZ_BUTTON_Y);
         if(loggingButtonState && !previousRecordButtonState) {

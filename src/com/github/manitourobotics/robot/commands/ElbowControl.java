@@ -39,7 +39,7 @@ public class ElbowControl extends CommandBase {
         if(manualControl) {
             speed = oi.madcatz.getRawAxis(RobotMap.MADCATZ_AXIS_ELBOW_ARM_CONTROL);
         }
-        Logger.log(Logger.ELBOW_ARMS, Double.toString(speed));
+        Logger.logCheck(Logger.ELBOW_ARMS, Double.toString(speed));
         elbowArms.setElbowArmSpeed(speed);
         SmartDashboard.putString("elbowControl", Double.toString(speed));
     }

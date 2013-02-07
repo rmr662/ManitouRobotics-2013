@@ -33,7 +33,8 @@ public class Logger {
     private static DataInputStream in;
     private static DataOutputStream out;
     private static Timer timer = new Timer();
-    private static FileConnection fileConnection;
+    private static FileConnection fileInputConnection;
+    private static FileConnection fileOutputConnection;
     private static String oldMode;
 
     public static final int SMALL_ARMS = 1;
@@ -51,38 +52,24 @@ public class Logger {
     
 
     public Logger() {
-        try {
-            // Find a unique filename test<x>.txt where x is a number. Never erase a log
-            // One must move the log to final.txt (Get a ftp client under /ni-rt/system/) 
-            // to actually read the log 
-            do {
-            fileConnection = (FileConnection) Connector.open("file://test" + Integer.toString(fileNumber) + ".txt", Connector.READ_WRITE);
-
-            fileNumber += 1;
-            } while (!fileConnection.exists());
-
-            fileConnection.create();
-
-
-            SmartDashboard.putString("Logger", "init");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        SmartDashboard.putString("Logger", "init");
     }
 
     public boolean isRecording() {
         return recording;
     }
-    public static void resume() {
+    public static void pausePlayback() {
     }
-    public static void play(String filename) {
+    public static void resumePlayback() {
     }
-    public static void startPlay() {
+
+    public static void startPlayback(String filename) {
         if(recording) {
             return;
         }
         try {
-        in = fileConnection.openDataInputStream();
+            fileInputConnection = (FileConnection) Connector.open("file://" + filename + ".txt", Connector.WRITE);
+            in = fileInputConnection.openDataInputStream();
         } catch (IOException e) {
             System.out.println("cannot read file");
         }
@@ -94,11 +81,13 @@ public class Logger {
         timer.start();
         timeStamp = 0;
     }
-    public static void stopPlay() {
+
+    public static void stopPlayback() {
         OI.togglePlayMode();
         timer.reset();
         try {
             in.close();
+            fileInputConnection.close();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -106,17 +95,19 @@ public class Logger {
         SmartDashboard.putString("Logger", "Done Playing");
 
     }
-    public static void togglePlay() {
+    public static void togglePlayback() {
         if(recording) {
             return;
         }
         if(!playing) {
-            startPlay();
+            startPlayback("final.txt");
         }  else {
-            stopPlay();
+            stopPlayback();
         }
     }
-    public static void play() {
+
+    // Check if playing is enabled. If so, read the file an run the necessary commands
+    public static void playbackCheck() {
         if(!playing) {
             return;
         }
@@ -156,10 +147,10 @@ public class Logger {
         } catch (EOFException eof) {
             System.out.println("End of file");
             eof.printStackTrace();
-            stopPlay();
+            stopPlayback();
             return;
         } catch (Exception e){
-            stopPlay();
+            stopPlayback();
             e.printStackTrace(); 
             return;
         }
@@ -169,24 +160,53 @@ public class Logger {
         if(playing) {
             return;
         }
-        if(!recording) { // start logging
-            SmartDashboard.putString("Logger", "Logging");
-            timer.start();
-            recording = true;
-            try {
-                out = fileConnection.openDataOutputStream();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-        else { // clean up from logging
-            SmartDashboard.putString("Logger", "Done Logging");
-            recording = false; 
-            timer.stop(); 
+        if(!recording) {
+            startLogging();
+        } else { 
+            stopLogging();
         }
     }
 
-    public static void log(int commandName, String content ) {
+    private static void startLogging() {
+        SmartDashboard.putString("Logger", "Logging");
+        try {
+            do {
+                // Find a unique filename log<x>.txt where x is a number. Never erase a logCheck
+                // One must move the logCheck to final.txt (Get a ftp client under /ni-rt/system/) 
+                // to actually read the log
+                fileOutputConnection = (FileConnection) Connector.open("file://log" + Integer.toString(fileNumber) + ".txt", Connector.WRITE);
+
+                fileNumber += 1;
+            } while (!fileInputConnection.exists());
+
+            fileInputConnection.create();
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+        timer.start();
+        recording = true;
+        try {
+            out = fileOutputConnection.openDataOutputStream();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private static void stopLogging() {
+        SmartDashboard.putString("Logger", "Done Logging");
+        recording = false; 
+        timer.stop(); 
+        try {
+            out.close();
+            fileOutputConnection.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    // Check if logging is enabled. If so, write the command to a file
+    public static void logCheck(int commandName, String content ) {
         if (!recording) {
             return;
         }
