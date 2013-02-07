@@ -19,7 +19,6 @@ import com.github.manitourobotics.robot.commands.ShootFrisbee;
 import com.github.manitourobotics.robot.commands.ShootingOff;
 import com.github.manitourobotics.robot.commands.ShootingOn;
 import com.github.manitourobotics.robot.commands.StopSmallArms;
-import com.github.manitourobotics.robot.commands.ToggleControls;
 import com.github.manitourobotics.robot.subsystems.TilterOrArms;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
@@ -32,8 +31,10 @@ public class OI {
     public static Joystick logitech = new Joystick(RobotMap.JOYSTICK_LOGITECH);
     static boolean previousRecordButtonState = false;
     static boolean previousPlayButtonState = false;
+    static boolean previousModeButtonState = false;
     static boolean playButtonState;
     static boolean loggingButtonState;
+    static boolean modeButtonState;
     
     
     private static int previousMode;
@@ -60,7 +61,6 @@ public class OI {
     //Reset/set controls every teleop init
     public static void setupControls() {
         mode = RobotMap.MODE_SHOOTING; // Shooting always starts
-        buttonMode.whenPressed(new ToggleControls());
         setupShootingControls();
     }
 
@@ -71,6 +71,13 @@ public class OI {
         else if(mode == RobotMap.MODE_CLIMBING) {
             executeClimbingControls();
         }
+        modeButtonState = logitech.getRawButton(RobotMap.LOGITECH_BUTTON_MODE_SWITCH);
+        if(modeButtonState && !previousModeButtonState) { 
+            // if the button is just pressed not hold
+            toggleClimbingShootingMode();
+        }
+
+        previousModeButtonState = modeButtonState;
     }
 
     private static void executeClimbingControls() {
