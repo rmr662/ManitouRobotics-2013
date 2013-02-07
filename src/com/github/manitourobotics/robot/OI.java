@@ -131,6 +131,8 @@ public class OI {
         }
         else if (mode == RobotMap.MODE_AUTONOMOUS){
             modeName="Autonomous";
+        } else if (mode == RobotMap.MODE_PLAY){
+            modeName="Playing";
         } else {
             modeName="None2"; // this should never happen
         }
