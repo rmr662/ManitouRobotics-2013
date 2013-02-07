@@ -140,7 +140,7 @@ public class OI {
         SmartDashboard.putString("Mode", modeName);
     }
 
-    public static void toggleMode() {
+    public static void toggleClimbingShootingMode() {
         // switch current modes
         if(mode == RobotMap.MODE_SHOOTING) {
             mode=RobotMap.MODE_CLIMBING;
