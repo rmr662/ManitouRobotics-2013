@@ -87,6 +87,7 @@ public class Logger {
         OI.togglePlayMode();
         timer.reset();
         playing = false;
+        SmartDashboard.putString("Logger", "Done Playing");
 
     }
     public static void togglePlay() {
@@ -142,12 +143,10 @@ public class Logger {
             stopPlay();
             return;
         } catch (Exception e){
-            playing = false;
             stopPlay();
             e.printStackTrace(); 
             return;
         }
-        SmartDashboard.putString("Logger", "Done Playing");
     }
 
     public static void loggingToggle() {
@@ -158,7 +157,7 @@ public class Logger {
             return;
         }
         else {
-            SmartDashboard.putString("Logger", "Done");
+            SmartDashboard.putString("Logger", "Done Logging");
             recording = false;
             timer.stop();
             return;
