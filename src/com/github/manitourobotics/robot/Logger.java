@@ -87,8 +87,12 @@ public class Logger {
         OI.togglePlayMode();
         timer.reset();
         try {
-            in.close();
-            fileInputConnection.close();
+            if(in != null) {
+                in.close();
+            }
+            if(fileInputConnection != null){
+                fileInputConnection.close();
+            }
         } catch (IOException ex) {
             ex.printStackTrace();
         }
