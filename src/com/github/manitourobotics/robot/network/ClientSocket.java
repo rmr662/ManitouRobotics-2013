@@ -25,6 +25,10 @@ public class ClientSocket extends Thread implements Socket {
 	private String lastData;
 
 	public ClientSocket(String host, int port) {
+        establishConnection(host, port);
+	}
+
+    public void establishConnection(String host, int port) {
 		this.host = host;
 		this.port = port;
 		running = connected = false;
@@ -36,24 +40,15 @@ public class ClientSocket extends Thread implements Socket {
 			e.printStackTrace();
 			connection = null;
 		}
-	}
 
-    private void reconnect() {
-
-		try {
-			connection = ((SocketConnection) (Connector.open("socket://" + this.host
-					+ ":" + this.port)));
-		} catch (IOException e) {
-			e.printStackTrace();
-			connection = null;
-		}
     }
+
 
 	public void run() {
 		running = true;
 		while (running) {
             if(connection == null) {
-                reconnect(); 
+                establishConnection(this.host, this.port); 
             }
 			poll();
 			try {
