@@ -242,7 +242,7 @@ public class Logger {
         try {
 
             String timestamp = Double.toString(timer.get());
-            out.writeUTF(timestamp + ":" + Integer.toString(commandName) + ":" + content );
+            out.writeUTF(timestamp + ":" + Integer.toString(commandName) + ":" + content + "\n");
             out.flush();
         } catch (IOException ex) {
             ex.printStackTrace();
