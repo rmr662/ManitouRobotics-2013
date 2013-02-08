@@ -29,14 +29,11 @@ public class Logger {
     private static boolean recording;
     private static boolean playing; 
     private static boolean isPaused = false;
-    private static String pausedFilename;
-    private static int pausedFileReadPosition;
     private static DataInputStream in;
     private static DataOutputStream out;
     private static Timer timer = new Timer();
     private static FileConnection fileInputConnection;
     private static FileConnection fileOutputConnection;
-    private static String oldMode;
 
     public static final int SMALL_ARMS = 1;
     public static final int SHOULDER_ARMS = 2;
