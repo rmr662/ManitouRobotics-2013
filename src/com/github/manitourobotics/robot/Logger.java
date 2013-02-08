@@ -28,6 +28,7 @@ import javax.microedition.io.Connector;
 public class Logger {
     private static boolean recording;
     private static boolean playing; 
+    private static boolean isPaused = false;
     private static String pausedFilename;
     private static int pausedFileReadPosition;
     private static DataInputStream in;
@@ -49,18 +50,36 @@ public class Logger {
     private static int commandName;
     private static String content;
     private static int fileNumber = 1;
+
     
 
     public Logger() {
         SmartDashboard.putString("Logger", "init");
     }
 
-    public boolean isRecording() {
-        return recording;
+    static void togglePause() {
+        if(recording) {
+            return;
+        }
+        if(!playing) {
+            return;
+        }
+        if(isPaused) {
+            resumePlayback();
+        } else {
+            pausePlayback();
+        }
     }
+
     public static void pausePlayback() {
+        isPaused = true;
+        timer.stop();
+        OI.togglePlayMode();
     }
     public static void resumePlayback() {
+        isPaused = false;
+        timer.start();
+        OI.togglePlayMode();
     }
 
     public static void startPlayback(String filename) {
@@ -98,6 +117,8 @@ public class Logger {
         }
         playing = false;
         SmartDashboard.putString("Logger", "Done Playing");
+        OI.setupClimbingControls(); 
+        // The previous climbing controls commands have been removed by the playback mode, so I need to reinstantiate them
 
     }
     public static void togglePlayback() {
@@ -114,6 +135,9 @@ public class Logger {
     // Check if playing is enabled. If so, read the file an run the necessary commands
     public static void playbackCheck() {
         if(!playing) {
+            return;
+        }
+        if(isPaused) {
             return;
         }
         if (timer.get() <= timeStamp) {

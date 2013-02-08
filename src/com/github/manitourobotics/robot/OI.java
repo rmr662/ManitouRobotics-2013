@@ -32,6 +32,9 @@ public class OI {
     static boolean previousRecordButtonState = false;
     static boolean previousPlayButtonState = false;
     static boolean previousModeButtonState = false;
+    static boolean previousPauseButtonState = false;
+
+    static boolean pauseButtonState;
     static boolean playButtonState;
     static boolean loggingButtonState;
     static boolean modeButtonState;
@@ -76,8 +79,14 @@ public class OI {
             // if the button is just pressed not hold
             toggleClimbingShootingMode();
         }
-
         previousModeButtonState = modeButtonState;
+
+        pauseButtonState = madcatz.getRawButton(RobotMap.MADCATZ_BUTTON_RB);
+        if(pauseButtonState && !previousPauseButtonState) {
+            Logger.togglePause();
+        }
+        previousPauseButtonState = pauseButtonState;
+
     }
 
     private static void executeClimbingControls() {
@@ -152,7 +161,7 @@ public class OI {
         }
     }
 
-    private static void setupClimbingControls() {
+    public static void setupClimbingControls() {
 
         // controls in command instead of oi
         Scheduler.getInstance().add(new ElbowControl());
