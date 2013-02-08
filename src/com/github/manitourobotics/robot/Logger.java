@@ -177,7 +177,8 @@ public class Logger {
                 fileOutputConnection = (FileConnection) Connector.open("file://log" + Integer.toString(fileNumber) + ".txt", Connector.WRITE);
 
                 fileNumber += 1;
-            } while (!fileOutputConnection.exists());
+            } while (fileOutputConnection.exists()); 
+            // if the file doesn't exists, then create a file
 
             fileOutputConnection.create();
 
