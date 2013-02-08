@@ -75,6 +75,7 @@ public class Logger {
         isPaused = true;
         timer.stop();
         OI.togglePlayMode();
+        OI.setupClimbingControls();
     }
     public static void resumePlayback() {
         isPaused = false;
