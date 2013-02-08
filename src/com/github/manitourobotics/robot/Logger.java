@@ -72,6 +72,7 @@ public class Logger {
             in = fileInputConnection.openDataInputStream();
         } catch (IOException e) {
             System.out.println("cannot read file");
+            e.printStackTrace();
         }
 
         OI.togglePlayMode();
