@@ -68,7 +68,7 @@ public class Logger {
             return;
         }
         try {
-            fileInputConnection = (FileConnection) Connector.open("file://" + filename + ".txt", Connector.READ);
+            fileInputConnection = (FileConnection) Connector.open("file://" + filename, Connector.READ);
             in = fileInputConnection.openDataInputStream();
         } catch (IOException e) {
             System.out.println("cannot read file");
