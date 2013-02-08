@@ -135,11 +135,8 @@ public class Team2945Robot extends IterativeRobot {
         getWatchdog().feed();
         OI.executeControls();
         OI.displayControls();
-<<<<<<< HEAD
-=======
         Logger.playbackCheck();
         
->>>>>>> master
         Scheduler.getInstance().run();
         //String tcpString = data.grabData();
         //SmartDashboard.putString("data", tcpString);
