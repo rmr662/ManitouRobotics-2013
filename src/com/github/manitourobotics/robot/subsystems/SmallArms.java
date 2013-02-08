@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class SmallArms extends Subsystem {
-    Jaguar smallArmsMotor = new Jaguar(RobotMap.SMALL_ARMS); 
+    Jaguar smallArmsMotor = new Jaguar(RobotMap.PWM_SMALL_ARMS); 
     private double moveSpeed = 1;
 
 

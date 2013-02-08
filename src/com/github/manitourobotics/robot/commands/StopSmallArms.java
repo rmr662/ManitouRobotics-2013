@@ -4,6 +4,8 @@
  */
 package com.github.manitourobotics.robot.commands;
 
+import com.github.manitourobotics.robot.Logger;
+
 /**
  *
  * @author robotics
@@ -23,6 +25,7 @@ public class StopSmallArms extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         smallArms.stopSmallArms();
+        Logger.logCheck(Logger.SMALL_ARMS, Integer.toString(Logger.STOP));
     }
 
     // Make this return true when this Command no longer needs to run execute()

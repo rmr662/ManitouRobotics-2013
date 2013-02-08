@@ -97,6 +97,7 @@ public class Team2945Robot extends IterativeRobot {
 
         // Initialize all subsystems
         CommandBase.init();
+        getWatchdog().setExpiration(1); // More code, slower loop execution time
     }
 
     public void autonomousInit() {
@@ -123,6 +124,8 @@ public class Team2945Robot extends IterativeRobot {
         OI.setupControls();
         //data = new ReceiveTCPData();
         socket.start();
+        //data.grabData();
+        Logger logger = new Logger();
     }
 
     /**
@@ -132,6 +135,11 @@ public class Team2945Robot extends IterativeRobot {
         getWatchdog().feed();
         OI.executeControls();
         OI.displayControls();
+<<<<<<< HEAD
+=======
+        Logger.playbackCheck();
+        
+>>>>>>> master
         Scheduler.getInstance().run();
         //String tcpString = data.grabData();
         //SmartDashboard.putString("data", tcpString);

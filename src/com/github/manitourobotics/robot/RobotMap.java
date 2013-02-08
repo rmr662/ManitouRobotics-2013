@@ -22,6 +22,7 @@ public class RobotMap {
     public static final int MODE_SHOOTING = 1;
     public static final int MODE_CLIMBING = 2;
     public static final int MODE_AUTONOMOUS = 3;
+    public static final int MODE_PLAY = 4;
     
     //joystick/controller ports
     public static final int JOYSTICK_MADCATZ = 1;
@@ -49,9 +50,8 @@ public class RobotMap {
     public static final int PWM_RIGHT_DRIVE_TRAIN = 2;
     public static final int PWM_TILTER_OR_CENTER_ARM = 3;
     public static final int PWM_ELBOW_ARMS = 4;
+    public static final int PWM_SMALL_ARMS = 5; 
     public static final int PWM_SERVO_BARREL_STOPPER = 10;
-    public static final int SMALL_ARMS = 7; // pwm but may change
-    public static final int ELBOW_ARMS = 9; // pwm but may change
     
     // relay ports
     public static final int RELAY_PUSH_FRISBEE = 1;

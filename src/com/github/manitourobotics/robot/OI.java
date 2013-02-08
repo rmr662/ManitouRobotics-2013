@@ -10,8 +10,8 @@ import com.github.manitourobotics.robot.commands.AcquisitionForward;
 import com.github.manitourobotics.robot.commands.AcquisitionReverse;
 import com.github.manitourobotics.robot.commands.AcquisitionStop;
 import com.github.manitourobotics.robot.commands.ManualDriveTrainControl;
-import com.github.manitourobotics.robot.commands.ManualElbowControl;
-import com.github.manitourobotics.robot.commands.ManualShoulderControl;
+import com.github.manitourobotics.robot.commands.ElbowControl;
+import com.github.manitourobotics.robot.commands.ShoulderControl;
 import com.github.manitourobotics.robot.commands.ManualTilterControl;
 import com.github.manitourobotics.robot.commands.MoveSmallArmsDown;
 import com.github.manitourobotics.robot.commands.MoveSmallArmsUp;
@@ -19,7 +19,6 @@ import com.github.manitourobotics.robot.commands.ShootFrisbee;
 import com.github.manitourobotics.robot.commands.ShootingOff;
 import com.github.manitourobotics.robot.commands.ShootingOn;
 import com.github.manitourobotics.robot.commands.StopSmallArms;
-import com.github.manitourobotics.robot.commands.ToggleControls;
 import com.github.manitourobotics.robot.subsystems.TilterOrArms;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
@@ -30,11 +29,29 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 public class OI {
     public static Joystick madcatz = new Joystick(RobotMap.JOYSTICK_MADCATZ);
     public static Joystick logitech = new Joystick(RobotMap.JOYSTICK_LOGITECH);
+    static boolean previousRecordButtonState = false;
+    static boolean previousPlayButtonState = false;
+    static boolean previousModeButtonState = false;
+    static boolean previousPauseButtonState = false;
+
+    static boolean pauseButtonState;
+    static boolean playButtonState;
+    static boolean loggingButtonState;
+    static boolean modeButtonState;
     
     
-    static int mode;
-    static Button buttonMode = new JoystickButton(logitech, RobotMap.LOGITECH_BUTTON_MODE_SWITCH);
+    private static int previousMode;
+    private static int mode;
+    private static Button buttonMode = new JoystickButton(logitech, RobotMap.LOGITECH_BUTTON_MODE_SWITCH);
     
+    public static void togglePlayMode() {
+        if(mode == RobotMap.MODE_PLAY) {
+            mode = previousMode;
+        } else {
+            previousMode = mode;
+            mode = RobotMap.MODE_PLAY;
+        }
+    }
     public static int getMode() {
         return mode;
     }
@@ -47,7 +64,6 @@ public class OI {
     //Reset/set controls every teleop init
     public static void setupControls() {
         mode = RobotMap.MODE_SHOOTING; // Shooting always starts
-        buttonMode.whenPressed(new ToggleControls());
         setupShootingControls();
     }
 
@@ -58,6 +74,19 @@ public class OI {
         else if(mode == RobotMap.MODE_CLIMBING) {
             executeClimbingControls();
         }
+        modeButtonState = logitech.getRawButton(RobotMap.LOGITECH_BUTTON_MODE_SWITCH);
+        if(modeButtonState && !previousModeButtonState) { 
+            // if the button is just pressed not hold
+            toggleClimbingShootingMode();
+        }
+        previousModeButtonState = modeButtonState;
+
+        pauseButtonState = madcatz.getRawButton(RobotMap.MADCATZ_BUTTON_RB);
+        if(pauseButtonState && !previousPauseButtonState) {
+            Logger.togglePause();
+        }
+        previousPauseButtonState = pauseButtonState;
+
     }
 
     private static void executeClimbingControls() {
@@ -69,6 +98,17 @@ public class OI {
         } else {
             Scheduler.getInstance().add(new StopSmallArms());
         }
+
+        playButtonState = madcatz.getRawButton(RobotMap.MADCATZ_BUTTON_B);
+        if(playButtonState && !previousPlayButtonState) {
+            Logger.togglePlayback();
+        }
+        loggingButtonState = madcatz.getRawButton(RobotMap.MADCATZ_BUTTON_Y);
+        if(loggingButtonState && !previousRecordButtonState) {
+            Logger.loggingToggle();
+        }
+        previousRecordButtonState = loggingButtonState;
+        previousPlayButtonState = playButtonState;
     }
 
     private static void executeShootingControls() {
@@ -100,6 +140,8 @@ public class OI {
         }
         else if (mode == RobotMap.MODE_AUTONOMOUS){
             modeName="Autonomous";
+        } else if (mode == RobotMap.MODE_PLAY){
+            modeName="Playing";
         } else {
             modeName="None2"; // this should never happen
         }
@@ -107,7 +149,7 @@ public class OI {
         SmartDashboard.putString("Mode", modeName);
     }
 
-    public static void toggleMode() {
+    public static void toggleClimbingShootingMode() {
         // switch current modes
         if(mode == RobotMap.MODE_SHOOTING) {
             mode=RobotMap.MODE_CLIMBING;
@@ -119,11 +161,11 @@ public class OI {
         }
     }
 
-    private static void setupClimbingControls() {
+    public static void setupClimbingControls() {
 
         // controls in command instead of oi
-        Scheduler.getInstance().add(new ManualElbowControl());
-        Scheduler.getInstance().add(new ManualShoulderControl());
+        Scheduler.getInstance().add(new ElbowControl());
+        Scheduler.getInstance().add(new ShoulderControl());
 
     }
 

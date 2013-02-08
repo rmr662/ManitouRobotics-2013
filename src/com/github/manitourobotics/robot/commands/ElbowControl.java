@@ -4,6 +4,7 @@
  */
 package com.github.manitourobotics.robot.commands;
 
+import com.github.manitourobotics.robot.Logger;
 import com.github.manitourobotics.robot.RobotMap;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -11,12 +12,22 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  * @author robotics
  */
-public class ManualElbowControl extends CommandBase {
+public class ElbowControl extends CommandBase {
     
-    public ManualElbowControl() {
+    boolean manualControl;
+    double speed;
+
+    public ElbowControl() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(elbowArms);
+        manualControl = true;
+    }
+
+    public ElbowControl(double speed) {
+        this();
+        manualControl = false;
+        this.speed = speed;
     }
 
     // Called just before this Command runs the first time
@@ -25,13 +36,19 @@ public class ManualElbowControl extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        double speed = oi.madcatz.getRawAxis(RobotMap.MADCATZ_AXIS_ELBOW_ARM_CONTROL);
+        if(manualControl) {
+            speed = oi.madcatz.getRawAxis(RobotMap.MADCATZ_AXIS_ELBOW_ARM_CONTROL);
+        }
+        Logger.logCheck(Logger.ELBOW_ARMS, Double.toString(speed));
         elbowArms.setElbowArmSpeed(speed);
         SmartDashboard.putString("elbowControl", Double.toString(speed));
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+        if(!manualControl) {
+            return false;
+        } 
         if(oi.getMode() == RobotMap.MODE_CLIMBING) {
             return false;
         } else
@@ -42,7 +59,9 @@ public class ManualElbowControl extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-        elbowArms.setElbowArmSpeed(0);
+        if(manualControl) {
+            elbowArms.setElbowArmSpeed(0);
+        }
         SmartDashboard.putString("elbowControl", "Done");
     }
 
