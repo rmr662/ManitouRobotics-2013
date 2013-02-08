@@ -174,12 +174,12 @@ public class Logger {
                 // Find a unique filename log<x>.txt where x is a number. Never erase a logCheck
                 // One must move the logCheck to final.txt (Get a ftp client under /ni-rt/system/) 
                 // to actually read the log
-                fileOutputConnection = (FileConnection) Connector.open("file://log" + Integer.toString(fileNumber) + ".txt", Connector.WRITE);
+                fileOutputConnection = (FileConnection) Connector.open("file://log" + Integer.toString(fileNumber) + ".txt", Connector.READ);
 
                 fileNumber += 1;
             } while (!fileOutputConnection.exists());
 
-            fileInputConnection.create();
+            fileOutputConnection.create();
 
     } catch (Exception e) {
         e.printStackTrace();
