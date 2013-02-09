@@ -29,17 +29,21 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 public class OI {
     public static Joystick madcatz = new Joystick(RobotMap.JOYSTICK_MADCATZ);
     public static Joystick logitech = new Joystick(RobotMap.JOYSTICK_LOGITECH);
-    private static boolean previousRecordButtonState = false;
-    private static boolean previousPlayButtonState = false;
-    private static boolean previousModeButtonState = false;
-    private static boolean previousPauseButtonState = false;
+    private static boolean previousRecordButtonState;
+    private static boolean previousPlayButtonState;
+    private static boolean previousModeButtonState;
+    private static boolean previousPauseButtonState;
     private static boolean previousFrisbeeButtonState;
+    private static boolean previousArmUpButtonState;
+    private static boolean previousArmDownButtonState;
 
     private static boolean pauseButtonState;
     private static boolean playButtonState;
     private static boolean loggingButtonState;
     private static boolean modeButtonState;
     private static boolean frisbeeButtonState;
+    private static boolean armUpButtonState;
+    private static boolean armDownButtonState;
     
     
     private static int previousMode;
@@ -93,13 +97,18 @@ public class OI {
 
     private static void executeClimbingControls() {
         // nothing yet
-        if(madcatz.getRawButton(RobotMap.MADCATZ_BUTTON_A)) {
+        armDownButtonState = madcatz.getRawButton(RobotMap.MADCATZ_BUTTON_A);
+        armUpButtonState = madcatz.getRawButton(RobotMap.MADCATZ_BUTTON_X);
+        if(armDownButtonState && !previousArmDownButtonState) {
             Scheduler.getInstance().add(new MoveSmallArmsDown());
-        } else if(madcatz.getRawButton(RobotMap.MADCATZ_BUTTON_X)) {
+        } else if(armUpButtonState && !previousArmUpButtonState) {
             Scheduler.getInstance().add(new MoveSmallArmsUp());
-        } else {
+        } else if (!armUpButtonState && !armDownButtonState ){
             Scheduler.getInstance().add(new StopSmallArms());
         }
+        previousArmDownButtonState = armDownButtonState;
+        previousArmUpButtonState = armUpButtonState;
+
 
         playButtonState = madcatz.getRawButton(RobotMap.MADCATZ_BUTTON_B);
         if(playButtonState && !previousPlayButtonState) {

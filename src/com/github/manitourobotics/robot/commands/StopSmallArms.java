@@ -20,12 +20,12 @@ public class StopSmallArms extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        smallArms.stopSmallArms();
+        Logger.logCheck(Logger.SMALL_ARMS, Integer.toString(Logger.STOP));
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        smallArms.stopSmallArms();
-        Logger.logCheck(Logger.SMALL_ARMS, Integer.toString(Logger.STOP));
     }
 
     // Make this return true when this Command no longer needs to run execute()

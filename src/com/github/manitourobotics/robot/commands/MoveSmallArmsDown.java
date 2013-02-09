@@ -20,12 +20,12 @@ public class MoveSmallArmsDown extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        smallArms.moveSmallArmsDown();
+        Logger.logCheck(Logger.SMALL_ARMS, Integer.toString(Logger.DOWN));
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        smallArms.moveSmallArmsDown();
-        Logger.logCheck(Logger.SMALL_ARMS, Integer.toString(Logger.DOWN));
     }
 
     // Make this return true when this Command no longer needs to run execute()
