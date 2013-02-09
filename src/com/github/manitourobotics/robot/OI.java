@@ -29,15 +29,17 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 public class OI {
     public static Joystick madcatz = new Joystick(RobotMap.JOYSTICK_MADCATZ);
     public static Joystick logitech = new Joystick(RobotMap.JOYSTICK_LOGITECH);
-    static boolean previousRecordButtonState = false;
-    static boolean previousPlayButtonState = false;
-    static boolean previousModeButtonState = false;
-    static boolean previousPauseButtonState = false;
+    private static boolean previousRecordButtonState = false;
+    private static boolean previousPlayButtonState = false;
+    private static boolean previousModeButtonState = false;
+    private static boolean previousPauseButtonState = false;
+    private static boolean previousFrisbeeButtonState;
 
-    static boolean pauseButtonState;
-    static boolean playButtonState;
-    static boolean loggingButtonState;
-    static boolean modeButtonState;
+    private static boolean pauseButtonState;
+    private static boolean playButtonState;
+    private static boolean loggingButtonState;
+    private static boolean modeButtonState;
+    private static boolean frisbeeButtonState;
     
     
     private static int previousMode;
@@ -113,9 +115,12 @@ public class OI {
 
     private static void executeShootingControls() {
 
-        if(logitech.getRawButton(RobotMap.LOGITECH_BUTTON_FRISBEE_PUSH)) {
+        frisbeeButtonState = logitech.getRawButton(RobotMap.LOGITECH_BUTTON_FRISBEE_PUSH);
+        if(frisbeeButtonState && !previousFrisbeeButtonState) {
             Scheduler.getInstance().add(new ShootFrisbee());
         }
+        previousFrisbeeButtonState = frisbeeButtonState;
+
         if(logitech.getRawButton(RobotMap.LOGITECH_BUTTON_SHOOTER_OFF)) {
             Scheduler.getInstance().add(new ShootingOff());
         }
