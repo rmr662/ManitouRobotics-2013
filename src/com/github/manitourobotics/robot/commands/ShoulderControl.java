@@ -38,7 +38,8 @@ public class ShoulderControl extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         if(manualControl) {
-            speed = oi.madcatz.getRawAxis(RobotMap.MADCATZ_AXIS_SHOULDER_ARM_CONTROL);
+            //speed = oi.madcatz.getRawAxis(RobotMap.MADCATZ_AXIS_SHOULDER_ARM_CONTROL);
+            speed = oi.getAxisAdjusted(oi.madcatz, RobotMap.MADCATZ_AXIS_SHOULDER_ARM_CONTROL);
         } // else speed is already set
         Logger.logCheck(Logger.SHOULDER_ARMS, Double.toString(speed));
         tilterOrArms.setTilterOrArmsSpeed(speed);

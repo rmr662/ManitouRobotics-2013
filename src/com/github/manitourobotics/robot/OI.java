@@ -50,6 +50,21 @@ public class OI {
     private static int mode;
     private static Button buttonMode = new JoystickButton(logitech, RobotMap.LOGITECH_BUTTON_MODE_SWITCH);
     
+    // Create a small deadzone around zero because the madcatz joystick is slightly broken
+    public static double getAxisAdjusted(Joystick joystick, int axisNumber) {
+        double rawAxisValue = joystick.getRawAxis(axisNumber);
+        double finalAxisValue;
+
+        // dead zone between -.1 and .1
+        if( rawAxisValue < .1 && rawAxisValue > -.1 ) {
+            finalAxisValue = 0;
+        }
+        else {
+            finalAxisValue = rawAxisValue;
+        }
+
+        return finalAxisValue;
+    }
     public static void togglePlayMode() {
         if(mode == RobotMap.MODE_PLAY) {
             mode = previousMode;
