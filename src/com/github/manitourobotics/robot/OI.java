@@ -125,9 +125,6 @@ public class OI {
 
     }
 
-    private static void executeAcquisitionControls() {
-    }
-
     public static void displayControls() {
 
         // since mode is an integer, I need to convert that integer to something meaningful to output to the SmartDashboard
