@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.github.manitourobotics.robot.commands.AcquisitionForward;
 import com.github.manitourobotics.robot.commands.AcquisitionReverse;
 import com.github.manitourobotics.robot.commands.AcquisitionStop;
+import com.github.manitourobotics.robot.commands.DriveStop;
 import com.github.manitourobotics.robot.commands.ManualDriveTrainControl;
 import com.github.manitourobotics.robot.commands.ElbowControl;
 import com.github.manitourobotics.robot.commands.ShoulderControl;
@@ -188,6 +189,7 @@ public class OI {
     }
 
     public static void setupClimbingControls() {
+        Scheduler.getInstance().add(new DriveStop());
 
         // controls in command instead of oi
         Scheduler.getInstance().add(new ElbowControl());
