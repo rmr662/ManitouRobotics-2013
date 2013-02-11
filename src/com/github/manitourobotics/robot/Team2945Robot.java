@@ -143,8 +143,11 @@ public class Team2945Robot extends IterativeRobot {
         //SmartDashboard.putString("data", tcpString);
         //System.out.println("data: " + tcpString);
         if(socket.isConnected()) {
-            SmartDashboard.putString("data", socket.getLastData());
-            System.out.println("data: " + socket.getLastData());
+            String socketData = socket.getLastData();
+            if(socketData != null) {
+                SmartDashboard.putString("data", socketData);
+            }
+            System.out.println("data: " + socketData);
         }
 
     }
