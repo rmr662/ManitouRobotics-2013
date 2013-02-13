@@ -10,14 +10,21 @@ import com.sun.squawk.util.StringTokenizer;
  *
  * @author robotics
  */
-public class SocketReader {
+public class InformationRelayer {
     // takes information from the raspberry pi and then disects them for other command inspection
     StringTokenizer tok;
     String latestData;
 
-    static final int DISTANCE_FROM_TARGET = 1;
+    //distance format: <alignment/distance>_:TARGET_<type>:<distance from target>
+    static final int HORIZONTAL_ALIGNMENT_FROM_TARGET = 1;
+    static final int DISTANCE_FROM_TARGET = 2;
+    static final int TARGET_HIGH = 1;
+    static final int TARGET_MIDDLE = 2;
+    static final int TARGET_LOW = 3;
+    static final int NO_INFORMATION = -1000;
 
-    double targetDistance;
+    double targetDistance = NO_INFORMATION;
+    int targetType = NO_INFORMATION;
 
     public void giveData(String data) {
         latestData = data;
@@ -26,7 +33,8 @@ public class SocketReader {
         tok = new StringTokenizer(latestData, ":");
         commandType = Integer.parseInt(tok.nextToken());
 
-        if(commandType == DISTANCE_FROM_TARGET) {
+        if(commandType == HORIZONTAL_ALIGNMENT_FROM_TARGET || commandType == DISTANCE_FROM_TARGET) {
+            targetType = Integer.parseInt(tok.nextToken());
             targetDistance = Double.parseDouble(tok.nextToken());
         }
         else {
@@ -37,6 +45,10 @@ public class SocketReader {
 
     public double getTargetDistance() {
         return targetDistance;
+    }
+
+    public int getTargetType() {
+            return targetType;
     }
     
 }
