@@ -26,7 +26,7 @@ public abstract class CommandBase extends Command {
     public static Shooting shooting = new Shooting();
     public static BarrelStopper barrelStopper = new BarrelStopper();
     public static SmallArms smallArms = new SmallArms();
-    public static ElbowArms elbowArms = new ElbowArms();
+    public static ElbowArms elbowArms = new ElbowArms(true);
     public static TilterOrArms tilterOrArms = new TilterOrArms();
 
     public static void init() {
