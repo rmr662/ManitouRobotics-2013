@@ -47,8 +47,6 @@ public class ElbowArms extends Subsystem {
         this.encoderEnabled = encoderEnabled;
         encoder.start();
     }
-    public ElbowArms() {
-    }
 
     public void setElbowArmSpeed(double speed) {
         if(encoderEnabled) {
