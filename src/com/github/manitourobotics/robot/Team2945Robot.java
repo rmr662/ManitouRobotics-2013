@@ -19,6 +19,7 @@ import com.github.manitourobotics.robot.commands.AcquisitionForward;
 import com.github.manitourobotics.robot.commands.AcquisitionReverse;
 import com.github.manitourobotics.robot.commands.AcquisitionStop;
 import com.github.manitourobotics.robot.commands.ShootingOn;
+import com.github.manitourobotics.robot.network.SocketReader;
 import edu.wpi.first.wpilibj.Servo;
 
 /**
@@ -38,6 +39,7 @@ public class Team2945Robot extends IterativeRobot {
     private static final boolean DEBUG_CAMERA = false;
 
     ClientSocket socket ;
+    SocketReader socketReader;
     //ReceiveTCPData data;
 
     /** 
@@ -100,6 +102,7 @@ public class Team2945Robot extends IterativeRobot {
         getWatchdog().setExpiration(1); // More code, slower loop execution time
         socket = new ClientSocket("10.29.45.4", 1180);
         socket.start();
+        socketReader = new SocketReader();
     }
 
     public void autonomousInit() {
@@ -146,6 +149,7 @@ public class Team2945Robot extends IterativeRobot {
             String socketData = socket.getLastData();
             if(socketData != null) {
                 SmartDashboard.putString("data", socketData);
+                socketReader.giveData(socketData);
             }
             System.out.println("data: " + socketData);
         }
