@@ -19,7 +19,7 @@ public class SocketReader {
 
     double targetDistance;
 
-    void giveData(String data) {
+    public void giveData(String data) {
         latestData = data;
         int commandType;
 
