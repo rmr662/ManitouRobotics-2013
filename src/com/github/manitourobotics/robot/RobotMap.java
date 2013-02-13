@@ -58,6 +58,19 @@ public class RobotMap {
     // reserve ports 2 and 3 for acquisition
     public static final int RELAY_SHOOTER = 4;
     // reserve port 5 and 6 for shooting motors
+
+    //Digital I/O ports
+    public static final int IO_SHOULDER_ENCODER_A = 1;
+    public static final int IO_SHOULDER_ENCODER_B = 2;
+    public static final int IO_DECN = 3;
+    public static final int IO_INCN = 4;
+    public static final int IO_ELBOW_ENCODER_A = 5;
+    public static final int IO_ELBOW_ENCODER_B = 6;
+
+    //Analog ports
+    public static final int ANALOG_T_REX_ENCODER = 1;
+    //2 reserved for space
+    public static final int ANALOG_GYROSCOPE = 2;
     
     //madcatz shooting axes uses
     public static final int MADCATZ_AXIS_MANUAL_DRIVE_TRAIN_LEFT = MADCATZ_AXIS_LEFT_JOYSTICK_Y;
