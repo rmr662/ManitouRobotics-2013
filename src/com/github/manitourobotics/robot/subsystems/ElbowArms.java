@@ -43,11 +43,11 @@ public class ElbowArms extends Subsystem {
         return angleDifference;
 
     }
-    public void ElbowArms(boolean encoderEnabled) {
+    public ElbowArms(boolean encoderEnabled) {
         this.encoderEnabled = encoderEnabled;
         encoder.start();
     }
-    public void ElbowArms() {
+    public ElbowArms() {
     }
 
     public void setElbowArmSpeed(double speed) {
