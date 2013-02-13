@@ -154,6 +154,9 @@ public class Team2945Robot extends IterativeRobot {
             System.out.println("data: " + socketData);
         }
 
+        double targetDistance = socketReader.getTargetDistance();
+        SmartDashboard.putNumber("targetDistance", targetDistance);
+
     }
     
     /**
