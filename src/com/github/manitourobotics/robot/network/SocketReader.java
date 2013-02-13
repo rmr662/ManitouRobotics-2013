@@ -35,7 +35,7 @@ public class SocketReader {
 
     }
 
-    double getTargetDistance() {
+    public double getTargetDistance() {
         return targetDistance;
     }
     
