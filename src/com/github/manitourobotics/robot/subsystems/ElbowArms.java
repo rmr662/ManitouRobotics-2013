@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -51,11 +52,12 @@ public class ElbowArms extends Subsystem {
     public void setElbowArmSpeed(double speed) {
         if(encoderEnabled) {
             currentAngle = DEFAULT_ANGLE + getTotalAngleChange();
+            SmartDashboard.putNumber("currentAngle", currentAngle);
 
-            if(currentAngle <= MIN_ANGLE && speed < 0) { // I'm assuming negative speed means smaller angle
+            if(currentAngle <= MIN_ANGLE && speed > 0) { 
                 elbowArmsMotor.set(0);
                 return;
-            } else if(currentAngle >= MAX_ANGLE && speed > 0) { // I'm assume positive speed means greater angle
+            } else if(currentAngle >= MAX_ANGLE && speed < 0) { 
                 elbowArmsMotor.set(0);
                 return;
             }

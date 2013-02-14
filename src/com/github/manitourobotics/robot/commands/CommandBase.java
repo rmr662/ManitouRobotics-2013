@@ -25,9 +25,9 @@ public abstract class CommandBase extends Command {
     public static Acquisition acquisition = new Acquisition();
     public static Shooting shooting = new Shooting();
     public static BarrelStopper barrelStopper = new BarrelStopper();
-    public static SmallArms smallArms = new SmallArms();
+    public static SmallArms smallArms = new SmallArms(true);
     public static ElbowArms elbowArms = new ElbowArms(true);
-    public static TilterOrArms tilterOrArms = new TilterOrArms();
+    public static TilterOrArms tilterOrArms = new TilterOrArms(true);
 
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely
