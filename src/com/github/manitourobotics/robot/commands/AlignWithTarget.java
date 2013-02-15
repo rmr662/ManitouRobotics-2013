@@ -4,6 +4,8 @@
  */
 package com.github.manitourobotics.robot.commands;
 
+import com.github.manitourobotics.robot.OI;
+import com.github.manitourobotics.robot.RobotMap;
 import com.github.manitourobotics.robot.network.InformationRelayer;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
@@ -61,7 +63,7 @@ public class AlignWithTarget extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if(isFinished) {
+        if(isFinished || OI.getMode() != RobotMap.MODE_SHOOTING) {
             return true;
         }
         else {
