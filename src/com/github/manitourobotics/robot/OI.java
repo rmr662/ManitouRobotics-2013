@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.github.manitourobotics.robot.commands.AcquisitionForward;
 import com.github.manitourobotics.robot.commands.AcquisitionReverse;
 import com.github.manitourobotics.robot.commands.AcquisitionStop;
+import com.github.manitourobotics.robot.commands.AlignWithTarget;
 import com.github.manitourobotics.robot.commands.ManualDriveTrainControl;
 import com.github.manitourobotics.robot.commands.ElbowControl;
 import com.github.manitourobotics.robot.commands.ShoulderControl;
@@ -123,6 +124,9 @@ public class OI {
             Scheduler.getInstance().add(new ShootingOn());
         }
 
+        if(logitech.getRawButton(RobotMap.LOGITECH_BUTTON_ALIGN_TARGET)) {
+            Scheduler.getInstance().add(new AlignWithTarget());
+        }
     }
 
     private static void executeAcquisitionControls() {
