@@ -12,8 +12,8 @@ import com.sun.squawk.util.StringTokenizer;
  */
 public class InformationRelayer {
     // takes information from the raspberry pi and then disects them for other command inspection
-    StringTokenizer tok;
-    String latestData;
+    static StringTokenizer tok;
+    static String latestData;
 
     //distance format: <alignment/distance>_:TARGET_<type>:<distance from target>
     static final int HORIZONTAL_ALIGNMENT_FROM_TARGET = 1;
@@ -23,10 +23,10 @@ public class InformationRelayer {
     static final int TARGET_LOW = 3;
     static final int NO_INFORMATION = -1000;
 
-    double targetDistance = NO_INFORMATION;
-    int targetType = NO_INFORMATION;
+    private static double targetDistance = NO_INFORMATION;
+    private static int targetType = NO_INFORMATION;
 
-    public void giveData(String data) {
+    public static void giveData(String data) {
         latestData = data;
         int commandType;
 
@@ -43,11 +43,11 @@ public class InformationRelayer {
 
     }
 
-    public double getTargetDistance() {
+    static public double getTargetDistance() {
         return targetDistance;
     }
 
-    public int getTargetType() {
+    static public int getTargetType() {
             return targetType;
     }
     
