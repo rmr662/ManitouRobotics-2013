@@ -16,12 +16,12 @@ public class InformationRelayer {
     static String latestData;
 
     //distance format: <alignment/distance>_:TARGET_<type>:<distance from target>
-    static final int HORIZONTAL_ALIGNMENT_FROM_TARGET = 1;
-    static final int DISTANCE_FROM_TARGET = 2;
-    static final int TARGET_HIGH = 1;
-    static final int TARGET_MIDDLE = 2;
-    static final int TARGET_LOW = 3;
-    static final int NO_INFORMATION = -1000;
+    public static final int HORIZONTAL_ALIGNMENT_FROM_TARGET = 1;
+    public static final int DISTANCE_FROM_TARGET = 2;
+    public static final int TARGET_HIGH = 1;
+    public static final int TARGET_MIDDLE = 2;
+    public static final int TARGET_LOW = 3;
+    public static final int NO_INFORMATION = -1000;
 
     private static double targetDistance = NO_INFORMATION;
     private static int targetType = NO_INFORMATION;
