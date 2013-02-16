@@ -1,4 +1,4 @@
-package com.github.manitourobotics.robot;
+package com.github.manitourobotics.robot.network;
 
 public interface Socket {
 	public void sendData(String data);

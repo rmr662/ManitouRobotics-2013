@@ -8,6 +8,7 @@
 package com.github.manitourobotics.robot;
 
 
+import com.github.manitourobotics.robot.network.ClientSocket;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -18,6 +19,7 @@ import com.github.manitourobotics.robot.commands.AcquisitionForward;
 import com.github.manitourobotics.robot.commands.AcquisitionReverse;
 import com.github.manitourobotics.robot.commands.AcquisitionStop;
 import com.github.manitourobotics.robot.commands.ShootingOn;
+import com.github.manitourobotics.robot.network.InformationRelayer;
 import edu.wpi.first.wpilibj.Servo;
 
 /**
@@ -36,6 +38,8 @@ public class Team2945Robot extends IterativeRobot {
     private static final boolean DEBUG_CHASSIS = false;
     private static final boolean DEBUG_CAMERA = false;
 
+    ClientSocket socket ;
+    InformationRelayer socketReader;
     //ReceiveTCPData data;
 
     /** 
@@ -96,6 +100,9 @@ public class Team2945Robot extends IterativeRobot {
         // Initialize all subsystems
         CommandBase.init();
         getWatchdog().setExpiration(1); // More code, slower loop execution time
+        socket = new ClientSocket("10.29.45.4", 1180);
+        socket.start();
+        socketReader = new InformationRelayer();
     }
 
     public void autonomousInit() {
@@ -115,12 +122,12 @@ public class Team2945Robot extends IterativeRobot {
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
         getWatchdog().feed();
-        //data = new ReceiveTCPData();
     }
 
     public void teleopInit() {
-        getWatchdog().setEnabled(true);
+        getWatchdog().setEnabled(false);
         OI.setupControls();
+        //data = new ReceiveTCPData();
         //data.grabData();
         Logger logger = new Logger();
     }
@@ -130,12 +137,26 @@ public class Team2945Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         getWatchdog().feed();
-
         OI.executeControls();
         OI.displayControls();
         Logger.playbackCheck();
         
         Scheduler.getInstance().run();
+        //String tcpString = data.grabData();
+        //SmartDashboard.putString("data", tcpString);
+        //System.out.println("data: " + tcpString);
+        if(socket.isConnected()) {
+            String socketData = socket.getLastData();
+            if(socketData != null) {
+                SmartDashboard.putString("data", socketData);
+                socketReader.giveData(socketData);
+            }
+            System.out.println("data: " + socketData);
+        }
+
+        double targetDistance = socketReader.getTargetDistance();
+        SmartDashboard.putNumber("targetDistance", targetDistance);
+
     }
     
     /**

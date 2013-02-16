@@ -1,4 +1,4 @@
-package com.github.manitourobotics.robot;
+package com.github.manitourobotics.robot.network;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -25,6 +25,10 @@ public class ClientSocket extends Thread implements Socket {
 	private String lastData;
 
 	public ClientSocket(String host, int port) {
+        establishConnection(host, port);
+	}
+
+    public void establishConnection(String host, int port) {
 		this.host = host;
 		this.port = port;
 		running = connected = false;
@@ -36,11 +40,16 @@ public class ClientSocket extends Thread implements Socket {
 			e.printStackTrace();
 			connection = null;
 		}
-	}
+
+    }
+
 
 	public void run() {
 		running = true;
 		while (running) {
+            if(connection == null) {
+                establishConnection(this.host, this.port); 
+            }
 			poll();
 			try {
 				Thread.sleep(POLL_TIME);

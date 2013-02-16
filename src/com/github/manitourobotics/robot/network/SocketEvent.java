@@ -1,4 +1,4 @@
-package com.github.manitourobotics.robot;
+package com.github.manitourobotics.robot.network;
 
 public class SocketEvent {
 	public static final int ON_DATA = 0;
