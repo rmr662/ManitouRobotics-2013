@@ -20,7 +20,8 @@ public class SmallArms extends Subsystem {
     private boolean encoderEnabled = false;
     double currentAngle = DEFAULT_ANGLE;
 
-    AnalogChannel absAngle = new AnalogChannel(1);
+    // voltage yet to be turned into degrees
+    AnalogChannel absAngle = new AnalogChannel(RobotMap.ANALOG_T_REX_ENCODER);
 
     public SmallArms(boolean encoderEnabled) {
         this.encoderEnabled = encoderEnabled;
