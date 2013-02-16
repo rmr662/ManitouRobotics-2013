@@ -24,16 +24,19 @@ public class Shooting extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-    private Relay frontMotor; 
+    private Relay relay = new Relay(RobotMap.RELAY_SHOOTER);
+    private Relay relayPractice = new Relay(RobotMap.RELAY_SHOOTER_PRACTICE);  // only for practice robot
 
     public Shooting() {
-        // The shootings should never go backwards
-        frontMotor = new Relay(RobotMap.RELAY_SHOOTER);
-        frontMotor.setDirection(Relay.Direction.kForward);
+        // The shooter should never go backwards
+        // setting the direction only limits the possible range of motion
+        relay.setDirection(Relay.Direction.kForward);
+        relayPractice.setDirection(Relay.Direction.kForward);
     }
 
     public void setShootingMotors(Relay.Value value) {
-        frontMotor.set(value);
+        relay.set(value);
+        relayPractice.set(value);
     }
 
     public void initDefaultCommand() {
