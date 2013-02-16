@@ -4,6 +4,7 @@ import com.github.manitourobotics.robot.RobotMap;
 import edu.wpi.first.wpilibj.AnalogChannel;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class SmallArms extends Subsystem {
     Jaguar smallArmsMotor = new Jaguar(RobotMap.PWM_SMALL_ARMS); 
@@ -28,6 +29,7 @@ public class SmallArms extends Subsystem {
 
     public double getAngle() {
         double angle = absAngle.getVoltage() * 360/4.9; 
+        SmartDashboard.putNumber("Angle", angle);
         return angle;
     }
 
