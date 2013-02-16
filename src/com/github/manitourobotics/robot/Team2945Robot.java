@@ -38,8 +38,8 @@ public class Team2945Robot extends IterativeRobot {
     private static final boolean DEBUG_CHASSIS = false;
     private static final boolean DEBUG_CAMERA = false;
 
-    ClientSocket socket ;
-    InformationRelayer socketReader;
+    //ClientSocket socket ;
+    //InformationRelayer socketReader;
     //ReceiveTCPData data;
 
     /** 
@@ -100,9 +100,9 @@ public class Team2945Robot extends IterativeRobot {
         // Initialize all subsystems
         CommandBase.init();
         getWatchdog().setExpiration(1); // More code, slower loop execution time
-        socket = new ClientSocket("10.29.45.4", 1180);
-        socket.start();
-        socketReader = new InformationRelayer();
+        //socket = new ClientSocket("10.29.45.4", 1180);
+        //socket.start();
+        //socketReader = new InformationRelayer();
     }
 
     public void autonomousInit() {
@@ -145,17 +145,17 @@ public class Team2945Robot extends IterativeRobot {
         //String tcpString = data.grabData();
         //SmartDashboard.putString("data", tcpString);
         //System.out.println("data: " + tcpString);
-        if(socket.isConnected()) {
-            String socketData = socket.getLastData();
-            if(socketData != null) {
-                SmartDashboard.putString("data", socketData);
-                socketReader.giveData(socketData);
-            }
-            System.out.println("data: " + socketData);
-        }
+        //if(socket.isConnected()) {
+        //    String socketData = socket.getLastData();
+        //    if(socketData != null) {
+        //        SmartDashboard.putString("data", socketData);
+        //        socketReader.giveData(socketData);
+        //    }
+        //    System.out.println("data: " + socketData);
+        //}
 
-        double targetDistance = socketReader.getTargetDistance();
-        SmartDashboard.putNumber("targetDistance", targetDistance);
+        //double targetDistance = socketReader.getTargetDistance();
+        //SmartDashboard.putNumber("targetDistance", targetDistance);
 
     }
     
