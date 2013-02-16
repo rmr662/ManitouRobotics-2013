@@ -30,7 +30,7 @@ public class SmallArms extends Subsystem {
     }
 
     public double getAngle() {
-        double angle = absAngle.getVoltage() * 360/4.1; 
+        double angle = absAngle.getVoltage() * 360/4.9; 
         return angle;
     }
 
