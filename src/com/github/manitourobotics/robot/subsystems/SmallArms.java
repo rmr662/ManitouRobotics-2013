@@ -13,9 +13,6 @@ public class SmallArms extends Subsystem {
     private final double DEFAULT_ANGLE = 45; // default angle of the arm relative to the ground
     private final double MIN_ANGLE = 45;
     private final double MAX_ANGLE = 95;
-    private final double ANGLE_CHANGE_PER_REVOLUTION = 2;
-    // to be tested
-    private final double MOVEMENT_PER_REVOLUTION = 2;
 
     private boolean encoderEnabled = false;
     double currentAngle = DEFAULT_ANGLE;
