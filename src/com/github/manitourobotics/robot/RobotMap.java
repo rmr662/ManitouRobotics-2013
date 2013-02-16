@@ -71,7 +71,7 @@ public class RobotMap {
     //Analog ports
     public static final int ANALOG_T_REX_ENCODER = 1;
     //2 reserved for space
-    public static final int ANALOG_GYROSCOPE = 2;
+    public static final int ANALOG_GYROSCOPE = 4;
     
     //madcatz shooting axes uses
     public static final int MADCATZ_AXIS_MANUAL_DRIVE_TRAIN_LEFT = MADCATZ_AXIS_LEFT_JOYSTICK_Y;
