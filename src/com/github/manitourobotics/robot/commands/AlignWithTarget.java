@@ -32,8 +32,8 @@ public class AlignWithTarget extends CommandBase {
         }
         
     }
-    TargetDistance distance;
-    MoveRobotDrive moveRobotDrive;
+    TargetDistance distance = new TargetDistance();
+    MoveRobotDrive moveRobotDrive = new MoveRobotDrive();
     boolean isFinished = false;
 
     PIDController controller = new PIDController(1/320, 0.0001, 0.0, distance, moveRobotDrive);
@@ -57,6 +57,11 @@ public class AlignWithTarget extends CommandBase {
            isFinished = true;
            return;
        }
+       if(distance.pidGet() < 5 && distance.pidGet() > -5) {
+            isFinished = true;
+            return;
+       }
+       SmartDashboard.putNumber("pidGet", distance.pidGet());
             
        controller.setSetpoint(0);
     }
