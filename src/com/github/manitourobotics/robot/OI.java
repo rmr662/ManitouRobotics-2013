@@ -35,8 +35,6 @@ public class OI {
     private static boolean previousModeButtonState;
     private static boolean previousPauseButtonState;
     private static boolean previousFrisbeeButtonState;
-    private static boolean previousArmUpButtonState;
-    private static boolean previousArmDownButtonState;
 
     private static boolean pauseButtonState;
     private static boolean playButtonState;
@@ -115,15 +113,13 @@ public class OI {
         // nothing yet
         armDownButtonState = madcatz.getRawButton(RobotMap.MADCATZ_BUTTON_A);
         armUpButtonState = madcatz.getRawButton(RobotMap.MADCATZ_BUTTON_X);
-        if(armDownButtonState && !previousArmDownButtonState) {
+        if(armDownButtonState) {
             Scheduler.getInstance().add(new MoveSmallArmsDown());
-        } else if(armUpButtonState && !previousArmUpButtonState) {
+        } else if(armUpButtonState) {
             Scheduler.getInstance().add(new MoveSmallArmsUp());
         } else if (!armUpButtonState && !armDownButtonState ){
             Scheduler.getInstance().add(new StopSmallArms());
         }
-        previousArmDownButtonState = armDownButtonState;
-        previousArmUpButtonState = armUpButtonState;
 
 
         playButtonState = madcatz.getRawButton(RobotMap.MADCATZ_BUTTON_B);
