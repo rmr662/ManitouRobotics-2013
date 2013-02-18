@@ -11,9 +11,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  * @author Justin
  */
-public class AcquisitionStop extends CommandBase {
+public class ShootingTriggerStop extends CommandBase {
     
-    public AcquisitionStop() {
+    public ShootingTriggerStop() {
         // Use requires() here to declare subsystem dependencies
         requires(acquisition);
     }

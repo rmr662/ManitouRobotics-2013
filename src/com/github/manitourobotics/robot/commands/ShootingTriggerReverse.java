@@ -11,17 +11,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  * @author Justin
  */
-public class AcquisitionReverse extends CommandBase {
+public class ShootingTriggerReverse extends CommandBase {
     
     // The isFinished method will differ depending weather this command is on a 
     // timer for usually autonomous things
     private boolean isUsingTimer = false;
 
-    public AcquisitionReverse() {
+    public ShootingTriggerReverse() {
         // Use requires() here to declare subsystem dependencies
         requires(acquisition);
     }
-    public AcquisitionReverse(double timeout) {
+    public ShootingTriggerReverse(double timeout) {
         this();
         setTimeout(timeout);
         isUsingTimer = true;

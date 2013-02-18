@@ -15,9 +15,9 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.github.manitourobotics.robot.commands.CommandBase;
-import com.github.manitourobotics.robot.commands.AcquisitionForward;
-import com.github.manitourobotics.robot.commands.AcquisitionReverse;
-import com.github.manitourobotics.robot.commands.AcquisitionStop;
+import com.github.manitourobotics.robot.commands.ShootingTriggerForward;
+import com.github.manitourobotics.robot.commands.ShootingTriggerReverse;
+import com.github.manitourobotics.robot.commands.ShootingTriggerStop;
 import com.github.manitourobotics.robot.commands.ShootingOn;
 import com.github.manitourobotics.robot.network.InformationRelayer;
 import edu.wpi.first.wpilibj.Servo;
@@ -95,7 +95,7 @@ public class Team2945Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-        //autonomousCommand = new AcquisitionForward(); //dummy
+        //autonomousCommand = new ShootingTriggerForward(); //dummy
 
         // Initialize all subsystems
         CommandBase.init();
@@ -112,7 +112,7 @@ public class Team2945Robot extends IterativeRobot {
     }
 
     public void startAutonomousSubsystems() {
-        Scheduler.getInstance().add(new AcquisitionForward());
+        Scheduler.getInstance().add(new ShootingTriggerForward());
         Scheduler.getInstance().add(new ShootingOn());
     }
 

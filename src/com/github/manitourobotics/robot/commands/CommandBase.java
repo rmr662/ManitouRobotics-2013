@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.github.manitourobotics.robot.OI;
 import com.github.manitourobotics.robot.subsystems.Chassis;
 import com.github.manitourobotics.robot.subsystems.Shooting;
-import com.github.manitourobotics.robot.subsystems.Acquisition;
+import com.github.manitourobotics.robot.subsystems.ShootingTrigger;
 import com.github.manitourobotics.robot.subsystems.BarrelStopper;
 import com.github.manitourobotics.robot.subsystems.ElbowArms;
 import com.github.manitourobotics.robot.subsystems.SmallArms;
@@ -22,7 +22,7 @@ public abstract class CommandBase extends Command {
     public static OI oi;
     // Create a single static instance of all of your subsystems
     public static Chassis chassis = new Chassis();
-    public static Acquisition acquisition = new Acquisition();
+    public static ShootingTrigger acquisition = new ShootingTrigger();
     public static Shooting shooting = new Shooting();
     public static BarrelStopper barrelStopper = new BarrelStopper();
     public static SmallArms smallArms = new SmallArms(true); // encoder enabled

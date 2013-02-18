@@ -11,9 +11,9 @@ public class ShootFrisbee extends CommandGroup {
     
         private static final double moveInterval = 0.1;
     public ShootFrisbee() {
-        addSequential(new AcquisitionForward(moveInterval));
-        addSequential(new AcquisitionReverse(moveInterval));
-        addSequential(new AcquisitionStop());
+        addSequential(new ShootingTriggerForward(moveInterval));
+        addSequential(new ShootingTriggerReverse(moveInterval));
+        addSequential(new ShootingTriggerStop());
         addSequential(new DeployFrisbeeFromBarrel()); // A new frisbee should be 
         // added to the barrel
     }

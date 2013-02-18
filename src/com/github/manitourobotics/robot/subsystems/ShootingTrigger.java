@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import com.github.manitourobotics.robot.RobotMap;
 
-public class Acquisition extends Subsystem {
+public class ShootingTrigger extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     private Relay acquisitionMotorTop = new Relay(RobotMap.RELAY_PUSH_FRISBEE);
@@ -17,7 +17,7 @@ public class Acquisition extends Subsystem {
         acquisitionMotorTop.set(value);
     }
     
-    public Acquisition() {
+    public ShootingTrigger() {
         setAcquisitionMotors(Relay.Value.kOn);
     }
     

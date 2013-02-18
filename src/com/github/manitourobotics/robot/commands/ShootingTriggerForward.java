@@ -12,18 +12,18 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  * @author Justin
  */
-public class AcquisitionForward extends CommandBase {
+public class ShootingTriggerForward extends CommandBase {
     
     // The isFinished method will differ depending weather this command is on a 
     // timer for usually autonomous things
     private boolean isUsingTimer = false;
 
-    public AcquisitionForward() {
+    public ShootingTriggerForward() {
         // Use requires() here to declare subsystem dependencies
         requires(acquisition);
     }
 
-    public AcquisitionForward(double timeout) {
+    public ShootingTriggerForward(double timeout) {
         this();
         setTimeout(timeout);
         isUsingTimer = true;
