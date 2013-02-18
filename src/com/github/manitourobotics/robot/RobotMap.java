@@ -48,9 +48,9 @@ public class RobotMap {
     //PWM ports
     public static final int PWM_LEFT_DRIVE_TRAIN = 1;
     public static final int PWM_RIGHT_DRIVE_TRAIN = 2;
-    public static final int PWM_TILTER_OR_CENTER_ARM = 3;
-    public static final int PWM_ELBOW_ARMS = 4;
-    public static final int PWM_SMALL_ARMS = 5; 
+    public static final int PWM_TILTER_OR_INNER_ARMS_SHOULDER_JOINT = 3;
+    public static final int PWM_INNER_ARMS_ELBOW_JOINT = 4;
+    public static final int PWM_OUTER_SMALL_ARMS = 5; 
     public static final int PWM_SERVO_BARREL_STOPPER = 10;
     
     // relay ports
@@ -69,7 +69,7 @@ public class RobotMap {
     public static final int IO_ELBOW_ENCODER_B = 6;
 
     //Analog ports
-    public static final int ANALOG_T_REX_ENCODER = 1;
+    public static final int ANALOG_OUTER_SMALL_ARMS_ENCODER = 1;
     //2 reserved for space
     public static final int ANALOG_GYROSCOPE = 4;
     
@@ -78,12 +78,12 @@ public class RobotMap {
     public static final int MADCATZ_AXIS_MANUAL_DRIVE_TRAIN_RIGHT = MADCATZ_AXIS_RIGHT_JOYSTICK_Y;
 
     //madcatz climbing axes uses
-    public static final int MADCATZ_AXIS_ELBOW_ARM_CONTROL = MADCATZ_AXIS_LEFT_JOYSTICK_Y;
-    public static final int MADCATZ_AXIS_SHOULDER_ARM_CONTROL = MADCATZ_AXIS_RIGHT_JOYSTICK_Y;
+    public static final int MADCATZ_AXIS_INNER_ARMS_ELBOW_CONTROL = MADCATZ_AXIS_LEFT_JOYSTICK_Y;
+    public static final int MADCATZ_AXIS_INNER_ARMS_SHOULDER_CONTROL = MADCATZ_AXIS_RIGHT_JOYSTICK_Y;
 
     //madcatz shooting button uses
-    public static final int MADCATZ_BUTTON_SMALL_ARM_UP = MADCATZ_BUTTON_X;
-    public static final int MADCATZ_BUTTON_SMALL_ARM_DOWN = MADCATZ_BUTTON_A;
+    public static final int MADCATZ_BUTTON_OUTER_SMALL_ARMS_UP = MADCATZ_BUTTON_X;
+    public static final int MADCATZ_BUTTON_OUTER_SMALL_ARMS_DOWN = MADCATZ_BUTTON_A;
     
     //logitech button uses
     public static final int LOGITECH_BUTTON_FRISBEE_PUSH = 1; // trigger

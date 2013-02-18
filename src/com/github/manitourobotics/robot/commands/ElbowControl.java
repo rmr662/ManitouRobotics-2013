@@ -37,7 +37,7 @@ public class ElbowControl extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         if(manualControl) {
-            speed = oi.madcatz.getRawAxis(RobotMap.MADCATZ_AXIS_ELBOW_ARM_CONTROL);
+            speed = oi.madcatz.getRawAxis(RobotMap.MADCATZ_AXIS_INNER_ARMS_ELBOW_CONTROL);
         }
         Logger.logCheck(Logger.ELBOW_ARMS, Double.toString(speed));
         elbowArms.setElbowArmSpeed(speed);

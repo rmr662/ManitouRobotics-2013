@@ -10,9 +10,9 @@ import com.github.manitourobotics.robot.Logger;
  *
  * @author robotics
  */
-public class StopSmallArms extends CommandBase {
+public class MoveOuterArmsDown extends CommandBase {
     
-    public StopSmallArms() {
+    public MoveOuterArmsDown() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(smallArms);
@@ -20,8 +20,8 @@ public class StopSmallArms extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        smallArms.stopSmallArms();
-        Logger.logCheck(Logger.SMALL_ARMS, Integer.toString(Logger.STOP));
+        smallArms.moveSmallArmsDown();
+        Logger.logCheck(Logger.SMALL_ARMS, Integer.toString(Logger.DOWN));
     }
 
     // Called repeatedly when this Command is scheduled to run

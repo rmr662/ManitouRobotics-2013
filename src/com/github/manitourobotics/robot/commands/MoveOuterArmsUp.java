@@ -10,9 +10,9 @@ import com.github.manitourobotics.robot.Logger;
  *  *
  *  * @author robotics
  *  */
-public class MoveSmallArmsUp extends CommandBase {
+public class MoveOuterArmsUp extends CommandBase {
         
-    public MoveSmallArmsUp() {
+    public MoveOuterArmsUp() {
                 // Use requires() here to declare subsystem dependencies
                 // eg. requires(chassis);
                 requires(smallArms);

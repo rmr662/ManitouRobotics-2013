@@ -13,15 +13,15 @@ import com.github.manitourobotics.robot.commands.DriveStop;
 import com.github.manitourobotics.robot.commands.AlignWithTarget;
 import com.github.manitourobotics.robot.commands.ManualDriveTrainControl;
 import com.github.manitourobotics.robot.commands.ElbowControl;
-import com.github.manitourobotics.robot.commands.ShoulderControl;
+import com.github.manitourobotics.robot.commands.ControlInnerShoulderArmJoint;
 import com.github.manitourobotics.robot.commands.ManualTilterControl;
-import com.github.manitourobotics.robot.commands.MoveSmallArmsDown;
-import com.github.manitourobotics.robot.commands.MoveSmallArmsUp;
+import com.github.manitourobotics.robot.commands.MoveOuterArmsDown;
+import com.github.manitourobotics.robot.commands.MoveOuterArmsUp;
 import com.github.manitourobotics.robot.commands.ShootFrisbee;
 import com.github.manitourobotics.robot.commands.ShootingOff;
 import com.github.manitourobotics.robot.commands.ShootingOn;
-import com.github.manitourobotics.robot.commands.StopSmallArms;
-import com.github.manitourobotics.robot.subsystems.TilterOrArms;
+import com.github.manitourobotics.robot.commands.StopOuterArms;
+import com.github.manitourobotics.robot.subsystems.TilterOrInnerArmsShoulderJoint;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
@@ -115,11 +115,11 @@ public class OI {
         armDownButtonState = madcatz.getRawButton(RobotMap.MADCATZ_BUTTON_A);
         armUpButtonState = madcatz.getRawButton(RobotMap.MADCATZ_BUTTON_X);
         if(armDownButtonState) {
-            Scheduler.getInstance().add(new MoveSmallArmsDown());
+            Scheduler.getInstance().add(new MoveOuterArmsDown());
         } else if(armUpButtonState) {
-            Scheduler.getInstance().add(new MoveSmallArmsUp());
+            Scheduler.getInstance().add(new MoveOuterArmsUp());
         } else if (!armUpButtonState && !armDownButtonState ){
-            Scheduler.getInstance().add(new StopSmallArms());
+            Scheduler.getInstance().add(new StopOuterArms());
         }
 
 
@@ -193,12 +193,12 @@ public class OI {
 
         // controls in command instead of oi
         Scheduler.getInstance().add(new ElbowControl());
-        Scheduler.getInstance().add(new ShoulderControl());
+        Scheduler.getInstance().add(new ControlInnerShoulderArmJoint());
 
     }
 
     private static void setupShootingControls() {
-        Scheduler.getInstance().add(new StopSmallArms());
+        Scheduler.getInstance().add(new StopOuterArms());
 
         Scheduler.getInstance().add(new ManualDriveTrainControl()); // controls 
         // in command instead of oi

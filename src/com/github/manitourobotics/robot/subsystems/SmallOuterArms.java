@@ -6,8 +6,8 @@ import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class SmallArms extends Subsystem {
-    Jaguar smallArmsMotor = new Jaguar(RobotMap.PWM_SMALL_ARMS); 
+public class SmallOuterArms extends Subsystem {
+    Jaguar smallArmsMotor = new Jaguar(RobotMap.PWM_OUTER_SMALL_ARMS); 
     private double moveSpeed = 1;
 
 
@@ -19,12 +19,12 @@ public class SmallArms extends Subsystem {
     double currentAngle = DEFAULT_ANGLE;
 
     // voltage yet to be turned into degrees
-    AnalogChannel absAngle = new AnalogChannel(RobotMap.ANALOG_T_REX_ENCODER);
+    AnalogChannel absAngle = new AnalogChannel(RobotMap.ANALOG_OUTER_SMALL_ARMS_ENCODER);
 
-    public SmallArms(boolean encoderEnabled) {
+    public SmallOuterArms(boolean encoderEnabled) {
         this.encoderEnabled = encoderEnabled;
     }
-    public SmallArms() {
+    public SmallOuterArms() {
     }
 
     public double getAngle() {

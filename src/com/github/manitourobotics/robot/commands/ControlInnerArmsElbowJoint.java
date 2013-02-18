@@ -4,9 +4,9 @@ package com.github.manitourobotics.robot.commands;
  *
  * @author robotics
  */
-public class ControlElbowArms extends CommandBase {
+public class ControlInnerArmsElbowJoint extends CommandBase {
     
-    public ControlElbowArms(double speed) {
+    public ControlInnerArmsElbowJoint(double speed) {
     }
 
     protected void initialize() {

@@ -10,7 +10,7 @@ public class DeployFrisbeeFromBarrel extends CommandGroup {
     
     public DeployFrisbeeFromBarrel() {
         // Timeouts only specify how long to hold the servo for
-        addSequential(new MoveBarrelServoUp(0.5));
-        addSequential(new MoveBarrelServoDown(0.5));
+        addSequential(new BlockFrisbeesIntoHopper(0.5));
+        addSequential(new UnblockFrisbeesIntoHopper(0.5));
     }
 }

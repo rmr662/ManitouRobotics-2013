@@ -5,10 +5,10 @@
 package com.github.manitourobotics.robot;
 
 import com.github.manitourobotics.robot.commands.ElbowControl;
-import com.github.manitourobotics.robot.commands.MoveSmallArmsDown;
-import com.github.manitourobotics.robot.commands.MoveSmallArmsUp;
-import com.github.manitourobotics.robot.commands.ShoulderControl;
-import com.github.manitourobotics.robot.commands.StopSmallArms;
+import com.github.manitourobotics.robot.commands.MoveOuterArmsDown;
+import com.github.manitourobotics.robot.commands.MoveOuterArmsUp;
+import com.github.manitourobotics.robot.commands.ControlInnerShoulderArmJoint;
+import com.github.manitourobotics.robot.commands.StopOuterArms;
 import com.sun.squawk.microedition.io.FileConnection;
 import com.sun.squawk.util.StringTokenizer;
 import edu.wpi.first.wpilibj.Timer;
@@ -157,15 +157,15 @@ public class Logger {
             if(commandName == SMALL_ARMS) {
                 int contentSmallArms = Integer.parseInt(content);
                 if (contentSmallArms == UP) {
-                    Scheduler.getInstance().add(new MoveSmallArmsUp());
+                    Scheduler.getInstance().add(new MoveOuterArmsUp());
                 } else if (contentSmallArms == DOWN) {
-                    Scheduler.getInstance().add(new MoveSmallArmsDown());
+                    Scheduler.getInstance().add(new MoveOuterArmsDown());
                 } else if (contentSmallArms == STOP) {
-                    Scheduler.getInstance().add(new StopSmallArms());
+                    Scheduler.getInstance().add(new StopOuterArms());
                 }
             } else if(commandName == SHOULDER_ARMS) {
                 double contentShoulderArms = Double.parseDouble(content);
-                Scheduler.getInstance().add(new ShoulderControl(contentShoulderArms));
+                Scheduler.getInstance().add(new ControlInnerShoulderArmJoint(contentShoulderArms));
 
             } else if(commandName == ELBOW_ARMS) {
                 double contentElbowArms = Double.parseDouble(content);

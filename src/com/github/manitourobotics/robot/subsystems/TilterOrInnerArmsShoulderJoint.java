@@ -15,18 +15,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  * @author robotics
  */
-//public class ElbowArms extends PIDSubsystem {
-public class ElbowArms extends Subsystem {
+//public class TilterOrInnerArmsShoulderJoint extends PIDSubsystem {
+public class TilterOrInnerArmsShoulderJoint extends Subsystem {
 
     private static final double Kp = 0.0;
     private static final double Ki = 0.0;
     private static final double Kd = 0.0;
 
-    private final int MOTOR_STOP = 0;
-    
-    Jaguar elbowArmsMotor = new Jaguar(RobotMap.PWM_ELBOW_ARMS);
+    Jaguar tilterJaguar = new Jaguar(RobotMap.PWM_TILTER_OR_INNER_ARMS_SHOULDER_JOINT);
+    static final int SPEED = 1;
 
-    Encoder encoder = new Encoder(RobotMap.IO_ELBOW_ENCODER_A, RobotMap.IO_ELBOW_ENCODER_B);
+    Encoder encoder = new Encoder(RobotMap.IO_SHOULDER_ENCODER_A, RobotMap.IO_SHOULDER_ENCODER_B);
     private final double DEFAULT_ANGLE = 45; // default angle of the arm relative to the ground
     private final double MIN_ANGLE = 45;
     private final double MAX_ANGLE = 95;
@@ -37,37 +36,34 @@ public class ElbowArms extends Subsystem {
     private boolean encoderEnabled = false;
     double currentAngle = DEFAULT_ANGLE;
 
-
     private double getTotalAngleChange () { //change from default angle
         double revolutions = encoder.get()/1024;
         double angleDifference = revolutions * 2;
         return angleDifference;
-
-    }
-    public ElbowArms(boolean encoderEnabled) {
-        this.encoderEnabled = encoderEnabled;
-        encoder.start();
     }
 
-    public void setElbowArmSpeed(double speed) {
+    public void setTilterOrArmsSpeed(double speed) {
         if(encoderEnabled) {
             currentAngle = DEFAULT_ANGLE + getTotalAngleChange();
             SmartDashboard.putNumber("currentAngle", currentAngle);
 
             if(currentAngle <= MIN_ANGLE && speed > 0) { 
-                elbowArmsMotor.set(0);
+                tilterJaguar.set(0);
                 return;
             } else if(currentAngle >= MAX_ANGLE && speed < 0) { 
-                elbowArmsMotor.set(0);
+                tilterJaguar.set(0);
                 return;
             }
         }
-        elbowArmsMotor.set(speed);
+        tilterJaguar.set(speed);
     }
 
+    public TilterOrInnerArmsShoulderJoint(boolean encoderEnabled) {
+        this.encoderEnabled = encoderEnabled;
+    }
     // Initialize your subsystem here
-    public ElbowArms() {
-        //super("ElbowArms", Kp, Ki, Kd);
+    public TilterOrInnerArmsShoulderJoint() {
+        //super("TilterOrInnerArmsShoulderJoint", Kp, Ki, Kd);
 
         // Use these to get going:
         // setSetpoint() -  Sets where the PID controller should move the system

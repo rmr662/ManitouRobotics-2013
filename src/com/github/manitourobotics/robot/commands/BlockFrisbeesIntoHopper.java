@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  * @author robotics
  */
-public class MoveBarrelServoUp extends CommandBase {
+public class BlockFrisbeesIntoHopper extends CommandBase {
     
     // The purpose of the timeout is to allow this command to be added to a command group and 
     // Not execute the next command right away
@@ -20,13 +20,13 @@ public class MoveBarrelServoUp extends CommandBase {
     // isFinished conditions
     private boolean timeoutEnabled = false;
 
-    public MoveBarrelServoUp() {
+    public BlockFrisbeesIntoHopper() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(barrelStopper);
     }
 
-    public MoveBarrelServoUp(double timeout) {
+    public BlockFrisbeesIntoHopper(double timeout) {
         this();
         timeoutEnabled = true;
         setTimeout(timeout);

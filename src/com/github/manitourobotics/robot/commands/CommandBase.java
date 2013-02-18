@@ -7,9 +7,9 @@ import com.github.manitourobotics.robot.subsystems.Chassis;
 import com.github.manitourobotics.robot.subsystems.Shooting;
 import com.github.manitourobotics.robot.subsystems.ShootingTrigger;
 import com.github.manitourobotics.robot.subsystems.BarrelStopper;
-import com.github.manitourobotics.robot.subsystems.ElbowArms;
-import com.github.manitourobotics.robot.subsystems.SmallArms;
-import com.github.manitourobotics.robot.subsystems.TilterOrArms;
+import com.github.manitourobotics.robot.subsystems.InnerArmsElbowJoint;
+import com.github.manitourobotics.robot.subsystems.SmallOuterArms;
+import com.github.manitourobotics.robot.subsystems.TilterOrInnerArmsShoulderJoint;
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -25,9 +25,9 @@ public abstract class CommandBase extends Command {
     public static ShootingTrigger acquisition = new ShootingTrigger();
     public static Shooting shooting = new Shooting();
     public static BarrelStopper barrelStopper = new BarrelStopper();
-    public static SmallArms smallArms = new SmallArms(true); // encoder enabled
-    public static ElbowArms elbowArms = new ElbowArms(true); // encoder enabled
-    public static TilterOrArms tilterOrArms = new TilterOrArms(true); // encoder enabled
+    public static SmallOuterArms smallArms = new SmallOuterArms(true); // encoder enabled
+    public static InnerArmsElbowJoint elbowArms = new InnerArmsElbowJoint(true); // encoder enabled
+    public static TilterOrInnerArmsShoulderJoint tilterOrArms = new TilterOrInnerArmsShoulderJoint(true); // encoder enabled
 
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely
