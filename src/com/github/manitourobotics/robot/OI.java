@@ -65,10 +65,10 @@ public class OI {
         return finalAxisValue;
     }
     public static void togglePlayMode() {
-        if(mode == RobotMap.MODE_PLAY) {
+        if(mode == RobotMap.MODE_CLIMBING_PLAYBACK) {
             mode = RobotMap.MODE_CLIMBING;
         } else if(mode == RobotMap.MODE_CLIMBING){
-            mode = RobotMap.MODE_PLAY;
+            mode = RobotMap.MODE_CLIMBING_PLAYBACK;
         }
         else {
             System.out.println("error in togglePlayMode; should not be here");
@@ -168,7 +168,7 @@ public class OI {
         }
         else if (mode == RobotMap.MODE_AUTONOMOUS){
             modeName="Autonomous";
-        } else if (mode == RobotMap.MODE_PLAY){
+        } else if (mode == RobotMap.MODE_CLIMBING_PLAYBACK){
             modeName="Playing";
         } else {
             modeName="None2"; // this should never happen
