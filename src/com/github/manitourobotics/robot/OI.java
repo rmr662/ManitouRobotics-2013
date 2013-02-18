@@ -46,7 +46,6 @@ public class OI {
     private static boolean armDownButtonState;
     
     
-    private static int previousMode;
     private static int mode;
     private static Button buttonMode = new JoystickButton(logitech, RobotMap.LOGITECH_BUTTON_MODE_SWITCH);
     
@@ -67,10 +66,12 @@ public class OI {
     }
     public static void togglePlayMode() {
         if(mode == RobotMap.MODE_PLAY) {
-            mode = previousMode;
-        } else {
-            previousMode = mode;
+            mode = RobotMap.MODE_CLIMBING;
+        } else if(mode == RobotMap.MODE_CLIMBING){
             mode = RobotMap.MODE_PLAY;
+        }
+        else {
+            System.out.println("error in togglePlayMode; should not be here");
         }
     }
     public static int getMode() {
