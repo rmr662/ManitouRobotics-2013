@@ -55,7 +55,7 @@ public class TilterOrArms extends Subsystem {
                 return;
             }
         }
-        tilterJaguar.set(speed * .1);
+        tilterJaguar.set(speed);
     }
 
     public TilterOrArms(boolean encoderEnabled) {
