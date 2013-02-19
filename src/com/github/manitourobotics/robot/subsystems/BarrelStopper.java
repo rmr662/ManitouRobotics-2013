@@ -18,8 +18,8 @@ public class BarrelStopper extends Subsystem {
 
     Servo barrelServo = new Servo(RobotMap.PWM_SERVO_BARREL_STOPPER);
 
-    private final double servoUpValue = 0.5;
-    private final double servoDownValue = 0;
+    private final double servoUpValue = 1;
+    private final double servoDownValue = .4;
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
