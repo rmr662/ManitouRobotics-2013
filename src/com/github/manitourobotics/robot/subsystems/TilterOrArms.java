@@ -36,26 +36,29 @@ public class TilterOrArms extends Subsystem {
     private boolean encoderEnabled = false;
     double currentAngle = DEFAULT_ANGLE;
 
+    private double finalSpeed = 0;
+
     private double getTotalAngleChange () { //change from default angle
         double revolutions = encoder.get()/1024;
         double angleDifference = revolutions * 2;
         return angleDifference;
     }
 
-    public void setTilterOrArmsSpeed(double speed) {
+    public void setTilterOrArmsSpeed(double addativeSpeed) {
+        finalSpeed += addativeSpeed * .001;
         if(encoderEnabled) {
             currentAngle = DEFAULT_ANGLE + getTotalAngleChange();
             SmartDashboard.putNumber("currentAngle", currentAngle);
 
-            if(currentAngle <= MIN_ANGLE && speed > 0) { 
-                tilterJaguar.set(0);
+            if(currentAngle <= MIN_ANGLE && finalSpeed > 0) { 
+                //tilterJaguar.set(0);
                 return;
-            } else if(currentAngle >= MAX_ANGLE && speed < 0) { 
-                tilterJaguar.set(0);
+            } else if(currentAngle >= MAX_ANGLE && finalSpeed < 0) { 
+                //tilterJaguar.set(0);
                 return;
             }
         }
-        tilterJaguar.set(speed);
+        tilterJaguar.set(finalSpeed);
     }
 
     public TilterOrArms(boolean encoderEnabled) {
