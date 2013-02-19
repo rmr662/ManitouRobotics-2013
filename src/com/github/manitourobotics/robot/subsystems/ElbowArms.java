@@ -62,7 +62,7 @@ public class ElbowArms extends Subsystem {
                 return;
             }
         }
-        elbowArmsMotor.set(speed);
+        elbowArmsMotor.set(speed * .1);
     }
 
     // Initialize your subsystem here
