@@ -33,10 +33,12 @@ public class ManualDriveTrainControl extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         RobotDrive drive = chassis.getRobotDrive();
+
         double leftValue = OI.madcatz.getRawAxis(RobotMap.MADCATZ_AXIS_MANUAL_DRIVE_TRAIN_LEFT);
         double rightValue = OI.madcatz.getRawAxis(RobotMap.MADCATZ_AXIS_MANUAL_DRIVE_TRAIN_RIGHT);
         
-        drive.tankDrive(leftValue, rightValue);
+        // robot moving backward; multiply by -1 to move forward
+        drive.tankDrive(leftValue * -1 , rightValue * -1);
         SmartDashboard.putNumber(("Left Drive Drain Control"), leftValue);
         SmartDashboard.putNumber(("Right Drive Drain Control"), rightValue);
         if (Team2945Robot.isDebugging("chassis")) {
