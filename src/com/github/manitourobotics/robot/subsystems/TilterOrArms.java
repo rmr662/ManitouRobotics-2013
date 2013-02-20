@@ -4,6 +4,7 @@
  */
 package com.github.manitourobotics.robot.subsystems;
 
+import com.github.manitourobotics.robot.OI;
 import com.github.manitourobotics.robot.RobotMap;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Jaguar;
@@ -21,6 +22,8 @@ public class TilterOrArms extends Subsystem {
     private static final double Kp = 0.0;
     private static final double Ki = 0.0;
     private static final double Kd = 0.0;
+
+    double multiplier = .5;
 
     Jaguar tilterJaguar = new Jaguar(RobotMap.PWM_TILTER_OR_CENTER_ARM);
     static final int SPEED = 1;
@@ -55,7 +58,8 @@ public class TilterOrArms extends Subsystem {
                 return;
             }
         }
-        tilterJaguar.set(speed);
+        OI.prefs.getDouble("multiplier tilter", multiplier);
+        tilterJaguar.set(speed * multiplier);
     }
 
     public TilterOrArms(boolean encoderEnabled) {
