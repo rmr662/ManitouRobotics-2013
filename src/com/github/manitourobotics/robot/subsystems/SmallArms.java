@@ -3,12 +3,12 @@ package com.github.manitourobotics.robot.subsystems;
 import com.github.manitourobotics.robot.RobotMap;
 import edu.wpi.first.wpilibj.AnalogChannel;
 import edu.wpi.first.wpilibj.Jaguar;
-import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class SmallArms extends Subsystem {
-    Relay smallArmsMotor = new Relay(RobotMap.RELAY_SMALL_ARMS); 
+    Jaguar smallArmsMotor = new Jaguar(RobotMap.PWM_SMALL_ARMS); 
+    private double moveSpeed = 1;
 
 
     private final double DEFAULT_ANGLE = 45; // default angle of the arm relative to the ground
@@ -41,7 +41,7 @@ public class SmallArms extends Subsystem {
                 return;
             }
         }
-        smallArmsMotor.set(Relay.Value.kForward);;
+        smallArmsMotor.set(moveSpeed);
     }
     public void moveSmallArmsDown() {
         if(encoderEnabled) {
@@ -51,11 +51,11 @@ public class SmallArms extends Subsystem {
                 return;
             }
         }
-        smallArmsMotor.set(Relay.Value.kReverse);
+        smallArmsMotor.set(moveSpeed * -1);
     }
 
     public void stopSmallArms() {
-        smallArmsMotor.set(Relay.Value.kOff);
+        smallArmsMotor.set(0);
     }
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
