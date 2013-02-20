@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class SmallArms extends Subsystem {
     Jaguar smallArmsMotor = new Jaguar(RobotMap.PWM_SMALL_ARMS); 
-    private double moveSpeed = 1;
+    private double moveSpeed = .25;
 
 
     private final double DEFAULT_ANGLE = 45; // default angle of the arm relative to the ground
