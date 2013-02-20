@@ -22,7 +22,6 @@ import com.github.manitourobotics.robot.commands.ShootingOff;
 import com.github.manitourobotics.robot.commands.ShootingOn;
 import com.github.manitourobotics.robot.commands.StopSmallArms;
 import com.github.manitourobotics.robot.subsystems.TilterOrArms;
-import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
@@ -30,8 +29,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-
-    public static Preferences prefs;
     public static Joystick madcatz = new Joystick(RobotMap.JOYSTICK_MADCATZ);
     public static Joystick logitech = new Joystick(RobotMap.JOYSTICK_LOGITECH);
     private static boolean previousRecordButtonState;
