@@ -15,6 +15,9 @@ public class InformationRelayer {
     static StringTokenizer tok;
     static String latestData;
 
+    public static final int GOAL_CAMERA = 0;
+    public static final int CLIMBING_CAMERA = 1;
+
     //distance format: <alignment/distance>_:TARGET_<type>:<distance from target>
     public static final int HORIZONTAL_ALIGNMENT_FROM_TARGET = 1;
     public static final int DISTANCE_FROM_TARGET = 2;
@@ -31,7 +34,27 @@ public class InformationRelayer {
         int commandType;
 
         tok = new StringTokenizer(latestData, ":");
-        commandType = Integer.parseInt(tok.nextToken());
+        int cameraType = Integer.parseInt(tok.nextToken());
+
+        if(cameraType == GOAL_CAMERA) {
+            processGoalInformation();
+
+        } else if (cameraType == CLIMBING_CAMERA) {
+            processClimbingInformation();
+        }
+
+    }
+
+    static public double getTargetDistance() {
+        return targetDistance;
+    }
+
+    static public int getTargetType() {
+            return targetType;
+    }
+
+    private static void processGoalInformation() {
+        int commandType = Integer.parseInt(tok.nextToken());
 
         if(commandType == HORIZONTAL_ALIGNMENT_FROM_TARGET || commandType == DISTANCE_FROM_TARGET) {
             targetType = Integer.parseInt(tok.nextToken());
@@ -43,12 +66,7 @@ public class InformationRelayer {
 
     }
 
-    static public double getTargetDistance() {
-        return targetDistance;
-    }
-
-    static public int getTargetType() {
-            return targetType;
+    private static void processClimbingInformation() {
     }
     
 }
