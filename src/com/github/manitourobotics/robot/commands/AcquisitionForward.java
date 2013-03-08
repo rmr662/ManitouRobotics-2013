@@ -8,10 +8,7 @@ import com.github.manitourobotics.robot.Team2945Robot;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-/**
- *
- * @author Justin
- */
+
 public class AcquisitionForward extends CommandBase {
     
     // The isFinished method will differ depending weather this command is on a 

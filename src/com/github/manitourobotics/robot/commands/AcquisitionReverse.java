@@ -7,10 +7,7 @@ package com.github.manitourobotics.robot.commands;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-/**
- *
- * @author Justin
- */
+
 public class AcquisitionReverse extends CommandBase {
     
     // The isFinished method will differ depending weather this command is on a 
