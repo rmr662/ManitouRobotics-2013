@@ -14,6 +14,7 @@ import com.github.manitourobotics.robot.OI;
 import com.github.manitourobotics.robot.RobotMap;
 import com.github.manitourobotics.robot.Team2945Robot;
 import com.github.manitourobotics.robot.commands.ShootingOn;
+import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.Relay;
 
 /**
@@ -24,19 +25,23 @@ public class Shooting extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-    private Relay relay = new Relay(RobotMap.RELAY_SHOOTER);
-    private Relay relayPractice = new Relay(RobotMap.RELAY_SHOOTER_PRACTICE);  // only for practice robot
+    private Jaguar jaguar = new Jaguar(RobotMap.PWM_JAGUAR_SHOOTER);
+
+    private int JAGUAR_OFF = 0;
+    private int JAGUAR_ON = -1;
 
     public Shooting() {
         // The shooter should never go backwards
         // setting the direction only limits the possible range of motion
-        relay.setDirection(Relay.Direction.kForward);
-        relayPractice.setDirection(Relay.Direction.kForward);
+        jaguar.set(JAGUAR_ON);
     }
 
-    public void setShootingMotors(Relay.Value value) {
-        relay.set(value);
-        relayPractice.set(value);
+    public void turnOff() {
+        jaguar.set(JAGUAR_OFF);
+    }
+
+    public void turnOn() {
+        jaguar.set(JAGUAR_ON);
     }
 
     public void initDefaultCommand() {

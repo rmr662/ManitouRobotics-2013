@@ -52,13 +52,10 @@ public class RobotMap {
     public static final int PWM_ELBOW_ARMS = 4;
     public static final int PWM_SMALL_ARMS = 5; 
     public static final int PWM_SERVO_BARREL_STOPPER = 10;
+    public static final int PWM_JAGUAR_SHOOTER = 6;
     
     // relay ports
     public static final int RELAY_PUSH_FRISBEE = 1;
-    // reserve ports 2 and 3 for acquisition
-    public static final int RELAY_SHOOTER = 4;
-    public static final int RELAY_SHOOTER_PRACTICE = 5; // only really moves a motor for the practice robot
-    // reserve port 5 and 6 for shooting motors
 
     //Digital I/O ports
     public static final int IO_SHOULDER_ENCODER_A = 1;

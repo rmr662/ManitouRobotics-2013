@@ -12,7 +12,7 @@ public class ShootingOn extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        shooting.setShootingMotors(Relay.Value.kReverse);
+        shooting.turnOff();
     }
 
     // Called repeatedly when this Command is scheduled to run
