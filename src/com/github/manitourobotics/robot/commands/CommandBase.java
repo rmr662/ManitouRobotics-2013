@@ -25,7 +25,7 @@ public abstract class CommandBase extends Command {
     public static Acquisition acquisition = new Acquisition();
     public static Shooting shooting = new Shooting();
     public static BarrelStopper barrelStopper = new BarrelStopper();
-    public static SmallArms smallArms = new SmallArms(false); // encoder enabled
+    public static SmallArms smallArms = new SmallArms(true); // encoder enabled
     public static ElbowArms elbowArms = new ElbowArms(false); // encoder enabled
     public static TilterOrArms tilterOrArms = new TilterOrArms(false); // encoder enabled
 

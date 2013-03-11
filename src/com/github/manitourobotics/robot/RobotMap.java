@@ -66,7 +66,7 @@ public class RobotMap {
     public static final int IO_ELBOW_ENCODER_B = 6;
 
     //Analog ports
-    public static final int ANALOG_T_REX_ENCODER = 1;
+    public static final int ANALOG_T_REX_ENCODER = 2;
     //2 reserved for space
     public static final int ANALOG_GYROSCOPE = 4;
     
