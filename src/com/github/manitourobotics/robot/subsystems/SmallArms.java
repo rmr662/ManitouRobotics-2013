@@ -8,15 +8,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class SmallArms extends Subsystem {
     Jaguar smallArmsMotor = new Jaguar(RobotMap.PWM_SMALL_ARMS); 
-    private double moveSpeed = .25;
+    private double moveSpeed = 1;
 
 
-    private final double DEFAULT_ANGLE = 45; // default angle of the arm relative to the ground
-    private final double MIN_ANGLE = 45;
-    private final double MAX_ANGLE = 95;
+    private final double MIN_ANGLE = 0;
+    private final double MAX_ANGLE = 90;
+    private final double OFFSET = 230; // voltage to angle is off by a constant
 
     private boolean encoderEnabled = false;
-    double currentAngle = DEFAULT_ANGLE;
 
     // voltage yet to be turned into degrees
     AnalogChannel absAngle = new AnalogChannel(RobotMap.ANALOG_T_REX_ENCODER);
@@ -28,8 +27,9 @@ public class SmallArms extends Subsystem {
     }
 
     public double getAngle() {
-        double angle = absAngle.getVoltage() * 360/4.9; 
-        SmartDashboard.putNumber("Angle", angle);
+        double angle = absAngle.getVoltage() * -1 * 360/4.9 + OFFSET ;  // -1 is because the voltage increases as the angle decreases
+        SmartDashboard.putNumber("small arms voltage", absAngle.getVoltage());
+        SmartDashboard.putNumber("small arms Angle", angle);
         return angle;
     }
 
