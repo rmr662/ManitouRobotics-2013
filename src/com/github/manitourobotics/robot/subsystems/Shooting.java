@@ -29,6 +29,7 @@ public class Shooting extends Subsystem {
 
     private int JAGUAR_OFF = 0;
     private int JAGUAR_ON = -1;
+    private double currentSpeed = jaguar.get();
 
     public Shooting() {
         // The shooter should never go backwards
@@ -37,11 +38,15 @@ public class Shooting extends Subsystem {
     }
 
     public void turnOff() {
-        jaguar.set(JAGUAR_OFF);
+        currentSpeed = JAGUAR_OFF;
+        jaguar.set(currentSpeed);
     }
 
     public void turnOn() {
-        jaguar.set(JAGUAR_ON);
+        if (currentSpeed >= JAGUAR_ON) {
+            currentSpeed -= 5;
+        }
+        jaguar.set(currentSpeed);
     }
 
     public void initDefaultCommand() {
