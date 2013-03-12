@@ -113,7 +113,7 @@ public class Team2945Robot extends IterativeRobot {
 
     public void startAutonomousSubsystems() {
         Scheduler.getInstance().add(new AcquisitionForward());
-        Scheduler.getInstance().add(new ShootingOn());
+        //Scheduler.getInstance().add(new ShootingOn());
     }
 
     /**

@@ -204,7 +204,7 @@ public class OI {
         // in command instead of oi
         Scheduler.getInstance().add(new ManualTilterControl()); 
 
-        Scheduler.getInstance().add(new ShootingOn()); // The shooting motors 
+        //Scheduler.getInstance().add(new ShootingOn()); // The shooting motors 
         // should always be on in shooting mode
     }
 

@@ -34,7 +34,6 @@ public class Shooting extends Subsystem {
     public Shooting() {
         // The shooter should never go backwards
         // setting the direction only limits the possible range of motion
-        jaguar.set(JAGUAR_ON);
     }
 
     public void turnOff() {
