@@ -26,7 +26,7 @@ public class ManualTilterControl extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        double speed = OI.logitech.getRawAxis(RobotMap.LOGITECH_AXIS_TILTER);
+        double speed = OI.getAxisAdjusted(OI.logitech, RobotMap.LOGITECH_AXIS_TILTER);
         tilterOrArms.setTilterOrArmsSpeed(speed);
         SmartDashboard.putString("TilterControl", Double.toString(speed));
 
